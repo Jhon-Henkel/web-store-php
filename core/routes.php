@@ -3,7 +3,6 @@
 $rotas = array(
     'inicio'    => 'main@index',
     'loja'      => 'main@loja',
-    'carrinho'  => 'loja@carrinho'
 );
 
 //define a ação caso a rota não esteja mapeada em rodas
