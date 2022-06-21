@@ -28,8 +28,15 @@ class Database
         $this->connectDb = null;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function select($sql, $params = null)
     {
+        if (!preg_match('/^SELECT/i', $sql)){
+            throw new \Exception('Base de dados não é do tipo SELECT');
+        }
+
         $this->connectDb();
 
         $results = null;
@@ -51,5 +58,110 @@ class Database
 
         $this->disconnectDb();
         return $results;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function insert($sql, $params = null)
+    {
+        if (!preg_match('/^INSERT/i', $sql)){
+            throw new \Exception('Base de dados não é do tipo INSERT');
+        }
+
+        $this->connectDb();
+
+        try {
+            $pdo = $this->connectDb->prepare($sql);
+
+            if (!empty($params)) {
+                $pdo->execute($params);
+            } else {
+                $pdo->execute();
+            }
+        } catch (\PDOException $exception) {
+            return false;
+        }
+
+        $this->disconnectDb();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function update($sql, $params = null)
+    {
+        if (!preg_match('/^UPDATE/i', $sql)){
+            throw new \Exception('Base de dados não é do tipo UPDATE');
+        }
+
+        $this->connectDb();
+
+        try {
+            $pdo = $this->connectDb->prepare($sql);
+
+            if (!empty($params)) {
+                $pdo->execute($params);
+            } else {
+                $pdo->execute();
+            }
+        } catch (\PDOException $exception) {
+            return false;
+        }
+
+        $this->disconnectDb();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function delete($sql, $params = null)
+    {
+        if (!preg_match('/^DELETE/i', $sql)){
+            throw new \Exception('Base de dados não é do tipo DELETE');
+        }
+
+        $this->connectDb();
+
+        try {
+            $pdo = $this->connectDb->prepare($sql);
+
+            if (!empty($params)) {
+                $pdo->execute($params);
+            } else {
+                $pdo->execute();
+            }
+        } catch (\PDOException $exception) {
+            return false;
+        }
+
+        $this->disconnectDb();
+    }
+
+    /**
+     * @throws \Exception
+     * query genérica
+     */
+    public function statement($sql, $params = null)
+    {
+        if (preg_match('/^(INSERT|UPDATE|DELETE|SELECT)/i', $sql)){
+            throw new \Exception('Base de dados não é válida para esse método');
+        }
+
+        $this->connectDb();
+
+        try {
+            $pdo = $this->connectDb->prepare($sql);
+
+            if (!empty($params)) {
+                $pdo->execute($params);
+            } else {
+                $pdo->execute();
+            }
+        } catch (\PDOException $exception) {
+            return false;
+        }
+
+        $this->disconnectDb();
     }
 }
