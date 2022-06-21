@@ -14,5 +14,7 @@
             "email": "jhowrf@gmail.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "kint-php/kint": "^4.1"
+    }
 }

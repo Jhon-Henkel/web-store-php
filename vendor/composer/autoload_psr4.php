@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'core\\' => array($baseDir . '/core'),
+    'Kint\\' => array($vendorDir . '/kint-php/kint/src'),
     'Jhowr\\WebStore\\' => array($baseDir . '/src'),
 );
