@@ -1,0 +1,18 @@
+{
+    "name": "jhowr/web-store",
+    "description": "Loja online em PHP",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Jhowr\\WebStore\\": "src/",
+            "core\\": "core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jhonatan Henkel",
+            "email": "jhowrf@gmail.com"
+        }
+    ],
+    "require": {}
+}
