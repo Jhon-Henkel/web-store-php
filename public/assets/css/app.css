@@ -1,1 +1,9 @@
-/* app.css */
+.navigation{
+    background-color: rgb(154, 171, 194);
+    color: black;
+}
+
+.footer{
+    background-color: rgb(60, 74, 82);
+    color: white;
+}

@@ -8,21 +8,34 @@ class Main
 {
     public function index()
     {
-        $data = [
-            'titulo'    => APP_NAME . ' ' . APP_VERSION
-        ];
-
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
             'inicio.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
-        ], $data);
+        ]);
     }
 
-    public function loja()
+    public function store()
     {
-        echo 'loja';
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'loja.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ]);
+    }
+
+    public function cart()
+    {
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'carrinho.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ]);
     }
 }
