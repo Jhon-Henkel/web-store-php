@@ -1,7 +1,7 @@
 <?php
 namespace core\classes;
 
-class Functions
+class Store
 {
     public static function layout($structures, $data = null)
     {
@@ -19,5 +19,11 @@ class Functions
         foreach ($structures as $structure) {
             include '../core/views/' . $structure;
         }
+    }
+
+    public static function clientLogged()
+    {
+        //verifica se existe um cliente com sessão
+        return isset($_SESSION['client']);
     }
 }

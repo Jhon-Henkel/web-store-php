@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '3917c79c5052b270641b5a200963dbc2' => $vendorDir . '/kint-php/kint/init.php',
+    'ec1db0a600a7e7c0264b4ce234310d44' => $baseDir . '/config.php',
 );

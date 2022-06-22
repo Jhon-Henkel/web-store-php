@@ -6,7 +6,10 @@
         "psr-4": {
             "Jhowr\\WebStore\\": "src/",
             "core\\": "core/"
-        }
+        },
+        "files": [
+            "config.php"
+        ]
     },
     "authors": [
         {

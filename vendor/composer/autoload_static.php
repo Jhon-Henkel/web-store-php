@@ -8,6 +8,7 @@ class ComposerStaticInit7f170d748ab2c3b1f532888f8136ac6b
 {
     public static $files = array (
         '3917c79c5052b270641b5a200963dbc2' => __DIR__ . '/..' . '/kint-php/kint/init.php',
+        'ec1db0a600a7e7c0264b4ce234310d44' => __DIR__ . '/../..' . '/config.php',
     );
 
     public static $prefixLengthsPsr4 = array (
