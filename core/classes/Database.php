@@ -33,6 +33,8 @@ class Database
      */
     public function select($sql, $params = null)
     {
+        $sql = trim($sql);
+
         if (!preg_match('/^SELECT/i', $sql)){
             throw new \Exception('Base de dados não é do tipo SELECT');
         }
@@ -65,6 +67,8 @@ class Database
      */
     public function insert($sql, $params = null)
     {
+        $sql = trim($sql);
+
         if (!preg_match('/^INSERT/i', $sql)){
             throw new \Exception('Base de dados não é do tipo INSERT');
         }
@@ -91,6 +95,8 @@ class Database
      */
     public function update($sql, $params = null)
     {
+        $sql = trim($sql);
+
         if (!preg_match('/^UPDATE/i', $sql)){
             throw new \Exception('Base de dados não é do tipo UPDATE');
         }
@@ -117,6 +123,8 @@ class Database
      */
     public function delete($sql, $params = null)
     {
+        $sql = trim($sql);
+
         if (!preg_match('/^DELETE/i', $sql)){
             throw new \Exception('Base de dados não é do tipo DELETE');
         }
@@ -144,6 +152,8 @@ class Database
      */
     public function statement($sql, $params = null)
     {
+        $sql = trim($sql);
+
         if (preg_match('/^(INSERT|UPDATE|DELETE|SELECT)/i', $sql)){
             throw new \Exception('Base de dados não é válida para esse método');
         }

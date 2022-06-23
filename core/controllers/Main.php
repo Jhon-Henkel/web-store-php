@@ -2,6 +2,7 @@
 
 namespace core\controllers;
 
+use core\classes\Database;
 use core\classes\Store;
 
 class Main
@@ -44,6 +45,9 @@ class Main
         ]);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function registerClient()
     {
         if (Store::isClientLogged()) {
@@ -57,7 +61,27 @@ class Main
             return;
         }
 
-        //criação do novo cliente
+        //verifica senhas
+        if ($_POST['cliente_senha1'] !== $_POST['cliente_senha2']) {
+            $_SESSION['error'] = 'As senhas não são iguais!';
+            $this->registerClient();
+            return;
+        }
+
+        //valida se e-mail ja existe
+        $db = new Database();
+        $params = [
+            ':email' => strtolower(trim($_POST['cliente_email']))
+        ];
+        $results = $db->select('SELECT email FROM clientes WHERE email = :email', $params);
+
+        if (count($results) != 0) {
+            $_SESSION['error'] = 'E-mail já cadastrado na base de dados!';
+            $this->registerClient();
+            return;
+        }
+
+        
     }
 
     public function cart()
