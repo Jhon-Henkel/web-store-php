@@ -28,7 +28,7 @@ class Main
         ]);
     }
 
-    public function registerClient()
+    public function registerClientForm()
     {
         if (Store::isClientLogged()) {
             $this->index();
@@ -42,6 +42,22 @@ class Main
             'layouts/footer.php',
             'layouts/html_footer.html'
         ]);
+    }
+
+    public function registerClient()
+    {
+        if (Store::isClientLogged()) {
+            $this->index();
+            return;
+        }
+
+        //valida se foi feito uma requisição diferente de post
+        if ($_SERVER['REQUEST_METHOD'] != 'post') {
+            $this->index();
+            return;
+        }
+
+        //criação do novo cliente
     }
 
     public function cart()

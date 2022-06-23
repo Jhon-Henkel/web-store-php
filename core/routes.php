@@ -5,7 +5,8 @@ $rotas = array(
     'loja'      => 'main@store',
 
     //cliente
-    'cliente_cadastro'  => 'main@registerClient',
+    'cliente_cadastro'  => 'main@registerClientForm',
+    'cliente_criar'     => 'main@registerClient',
 
     'carrinho'  => 'main@cart',
 );

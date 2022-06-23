@@ -16,11 +16,11 @@ use core\classes\Store;
 
             <!--verifica se existe cliente na sessão-->
             <?php if (store::isClientLogged()): ?>
-                <a href="" class="nav-item">Minha conta</a>
-                <a href="" class="nav-item">Logout</a>
+                <a href="?pagina=cliente_area" class="nav-item">Minha conta</a>
+                <a href="?pagina=logout" class="nav-item">Logout</a>
             <?php else: ?>
                 <a href="?pagina=cliente_cadastro" class="nav-item">Criar conta</a>
-                <a href="" class="nav-item">Login</a>
+                <a href="?pagina=login" class="nav-item">Login</a>
             <?php endif; ?>
 
             <a href="?pagina=carrinho"><i class="fa-solid fa-cart-shopping"></i></i></a>
