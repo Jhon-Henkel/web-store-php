@@ -21,7 +21,7 @@ class Store
         }
     }
 
-    public static function clientLogged()
+    public static function isClientLogged()
     {
         //verifica se existe um cliente com sessão
         return isset($_SESSION['client']);

@@ -3,6 +3,10 @@
 $rotas = array(
     'inicio'    => 'main@index',
     'loja'      => 'main@store',
+
+    //cliente
+    'cliente_cadastro'  => 'main@registerClient',
+
     'carrinho'  => 'main@cart',
 );
 

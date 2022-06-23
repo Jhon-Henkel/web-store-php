@@ -1,6 +1,6 @@
 <?php
 use core\classes\Store;
-$_SESSION['client'] = true;
+//$_SESSION['client'] = true;
 ?>
 
 <div class="container-fluid navigation">
@@ -11,16 +11,16 @@ $_SESSION['client'] = true;
             </a>
         </div>
         <div class="col-6 text-end p-3">
-            <a href="?pagina=inicio">Inicio</a>
-            <a href="?pagina=loja">Loja</a>
+            <a href="?pagina=inicio" class="nav-item">Inicio</a>
+            <a href="?pagina=loja" class="nav-item">Loja</a>
 
             <!--verifica se existe cliente na sessão-->
-            <?php if (store::clientLogged()): ?>
-                <a href="">Minha conta</a>
-                <a href="">Logout</a>
+            <?php if (store::isClientLogged()): ?>
+                <a href="" class="nav-item">Minha conta</a>
+                <a href="" class="nav-item">Logout</a>
             <?php else: ?>
-                <a href="">Criar conta</a>
-                <a href="">Login</a>
+                <a href="?pagina=cliente_cadastro" class="nav-item">Criar conta</a>
+                <a href="" class="nav-item">Login</a>
             <?php endif; ?>
 
             <a href="?pagina=carrinho"><i class="fa-solid fa-cart-shopping"></i></i></a>

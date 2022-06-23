@@ -28,6 +28,22 @@ class Main
         ]);
     }
 
+    public function registerClient()
+    {
+        if (Store::isClientLogged()) {
+            $this->index();
+            return;
+        }
+
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'cliente_cadastro.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ]);
+    }
+
     public function cart()
     {
         Store::layout([

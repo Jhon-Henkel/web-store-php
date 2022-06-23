@@ -7,3 +7,14 @@
     background-color: rgb(60, 74, 82);
     color: white;
 }
+
+.nav-item{
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
+
+.nav-item:hover{
+    text-decoration: underline;
+    color: white;
+}
