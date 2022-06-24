@@ -21,6 +21,8 @@
         "kint-php/kint": "^4.1"
     },
     "require": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "symfony/mailer": "^6.1",
+        "symfony/google-mailer": "^6.1"
     }
 }

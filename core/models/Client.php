@@ -27,35 +27,30 @@ class Client
         $purl = Store::generateMd5UniqId();
 
         $params = [
-            ":email"    => strtolower(trim($_POST['cliente_email'])),
-            ":password" => trim(password_hash($_POST['cliente_senha1'], PASSWORD_BCRYPT)),
-            ":nome"     => trim($_POST['cliente_nome']),
-            ":endereço" => trim($_POST['cliente_endereco']),
-            ":cidade"   => trim($_POST['cliente_cidade']),
-            ":telefone" => trim($_POST['cliente_telefone']),
-            ":purl"     => $purl,
-            ":status"   => 0
+            ":email_cliente"    => strtolower(trim($_POST['cliente_email'])),
+            ":senha_cliente"    => trim(password_hash($_POST['cliente_senha1'], PASSWORD_BCRYPT)),
+            ":nome_cliente"     => trim($_POST['cliente_nome']),
+            ":endereco_cliente" => trim($_POST['cliente_endereco']),
+            ":cidade_cliente"   => trim($_POST['cliente_cidade']),
+            ":telefone_cliente" => trim($_POST['cliente_telefone']),
+            ":purl_cliente"     => $purl,
+            ":status_cliente"   => 0
         ];
 
         $db->insert("
-            INSERT INTO clientes (
-                email_cliente,                  
-                senha_cliente,                  
-                nome_cliente,                  
-                endereco_cliente,                  
-                cidade_cliente,                  
-                telefone_cliente,                  
-                purl_cliente,                  
-                status_cliente                  
-            )VALUES(
-                :email,
-                :password,
-                :nome,
-                :endereco,
-                :cidade,
-                :telefone,
-                :purl,
-                :status
+            INSERT INTO clientes VALUES(
+                0,
+                :email_cliente,
+                :senha_cliente,
+                :nome_cliente,
+                :endereco_cliente,
+                :cidade_cliente,
+                :telefone_cliente,
+                :purl_cliente,
+                :status_cliente,
+                NOW(),
+                NOW(),
+                null
             )
         ", $params);
 
