@@ -4,6 +4,7 @@ namespace core\controllers;
 
 use core\classes\Database;
 use core\classes\Store;
+use core\models\Client;
 
 class Main
 {
@@ -68,53 +69,15 @@ class Main
             return;
         }
 
-        //valida se e-mail ja existe
-        $db = new Database();
-        $params = [
-            ':email' => strtolower(trim($_POST['cliente_email']))
-        ];
-        $results = $db->select('SELECT email_cliente FROM clientes WHERE email_cliente = :email', $params);
+        $client = new Client();
 
-        if (count($results) != 0) {
+        if ($client->validateEmail($_POST['cliente_email'])) {
             $_SESSION['error'] = 'E-mail já cadastrado na base de dados!';
             $this->registerClient();
             return;
         }
 
-        $purl = Store::generateMd5UniqId();
-
-        $params = [
-            ":email"    => strtolower(trim($_POST['cliente_email'])),
-            ":password" => trim(password_hash($_POST['cliente_senha1'], PASSWORD_BCRYPT)),
-            ":nome"     => trim($_POST['cliente_nome']),
-            ":endereço" => trim($_POST['cliente_endereco']),
-            ":cidade"   => trim($_POST['cliente_cidade']),
-            ":telefone" => trim($_POST['cliente_telefone']),
-            ":purl"     => $purl,
-            ":status"   => 0
-        ];
-
-        $db->insert("
-            INSERT INTO clientes (
-                email_cliente,                  
-                senha_cliente,                  
-                nome_cliente,                  
-                endereco_cliente,                  
-                cidade_cliente,                  
-                telefone_cliente,                  
-                purl_cliente,                  
-                status_cliente                  
-            )VALUES(
-                :email,
-                :password,
-                :nome,
-                :endereco,
-                :cidade,
-                :telefone,
-                :purl,
-                :status
-            )
-        ", $params);
+        $purl = $client->insertClient();
 
         //criar o link purl para enviar por e-mail
         $link_purl = 'https://loja.com.br/?pagina=confirmar_email&purl=' . $purl;
