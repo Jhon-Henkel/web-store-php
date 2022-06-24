@@ -27,17 +27,17 @@
 
                 <div class="my-3">
                     <label>Endereço</label>
-                    <input class="form-control" type="text" name="endereco_cliente" placeholder="Onde você mora?" required>
+                    <input class="form-control" type="text" name="cliente_endereco" placeholder="Onde você mora?" required>
                 </div>
 
                 <div class="my-3">
                     <label>Cidade</label>
-                    <input class="form-control" type="text" name="cidade_cliente" placeholder="Onde você mora?" required>
+                    <input class="form-control" type="text" name="cliente_cidade" placeholder="Onde você mora?" required>
                 </div>
 
                 <div class="my-3">
                     <label>Telefone</label>
-                    <input class="form-control" type="text" name="telefone_cliente" placeholder="Seu telefone">
+                    <input class="form-control" type="text" name="cliente_telefone" placeholder="Seu telefone">
                 </div>
 
                 <div class="my-4">

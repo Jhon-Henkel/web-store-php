@@ -26,4 +26,9 @@ class Store
         //verifica se existe um cliente com sessão
         return isset($_SESSION['client']);
     }
+
+    public static function generateMd5UniqId()
+    {
+        return md5(uniqid());
+    }
 }
