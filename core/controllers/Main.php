@@ -27,15 +27,14 @@ class Main
         $product = new Product();
         $productList = $product->productList();
 
-        d($productList);
-        die();
-
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
             'loja.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
+        ], [
+            'products'  => $productList,
         ]);
     }
 
