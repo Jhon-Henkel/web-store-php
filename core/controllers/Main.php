@@ -23,9 +23,8 @@ class Main
 
     public function store()
     {
-
         $product     = new Product();
-        $productList = $product->productList($_GET['c']);
+        $productList = $product->productList($_GET['c'] ?? 'todos');
         $categories  = $product->searchCategories();
 
         Store::layout([
