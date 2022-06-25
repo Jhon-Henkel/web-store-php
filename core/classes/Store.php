@@ -31,4 +31,9 @@ class Store
     {
         return md5(uniqid());
     }
+
+    public static function redirect($route = '')
+    {
+        header('location:' . BASE_URL . '?pagina=' . $route);
+    }
 }

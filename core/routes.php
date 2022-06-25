@@ -8,6 +8,7 @@ $rotas = array(
     'cliente_cadastro'  => 'main@registerClientForm',
     'cliente_criar'     => 'main@registerClient',
     'confirmar_email'   => 'main@confirmMail',
+    'login'             => 'main@login',
 
     'carrinho'  => 'main@cart',
 );

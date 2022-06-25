@@ -86,7 +86,16 @@ class Main
         $sendEmail = $email->sendEmailRegisterConfirm(strtolower(trim($_POST['cliente_email'])), $purl);
 
         if ($sendEmail) {
-            echo 'email enviado';
+
+            Store::layout([
+                'layouts/html_header.php',
+                'layouts/header.php',
+                'cliente_cadastro_sucesso.php',
+                'layouts/footer.php',
+                'layouts/html_footer.html'
+            ]);
+            return;
+
         } else {
             echo 'aconteceu um erro';
         }
@@ -116,10 +125,24 @@ class Main
         $clientConfirm = $client->validateRegister($_GET['purl']);
 
         if ($clientConfirm) {
-            echo 'Conta verificada com sucesso!';
+
+            Store::layout([
+                'layouts/html_header.php',
+                'layouts/header.php',
+                'cliente_cadastro_confirmado.php',
+                'layouts/footer.php',
+                'layouts/html_footer.html'
+            ]);
+            return;
+
         } else {
-            echo 'A conta não foi validada!';
+            Store::redirect('inicio');
         }
+    }
+
+    public function login()
+    {
+        echo 'login';
     }
 
     public function cart()

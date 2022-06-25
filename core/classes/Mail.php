@@ -54,7 +54,7 @@ class Mail
         $content = '<p>Seja bem-vindo a nossa loja ' . APP_NAME . '.</p>';
         $content.= '<p>Para confirmar seu e-mail, clique no link abaixo</p>';
         $content.= '<p><a href="' . $link . '">Confirmar e-mail</a></p>';
-        $content.= '<p><i><small>' . APP_NAME . '</small>></i></p>';
+        $content.= '<p><i><small>' . APP_NAME . '</small></i></p>';
 
         self::sendEmail($clientEmail, $subject, $content);
 
