@@ -6,6 +6,7 @@ use core\classes\Database;
 use core\classes\Mail;
 use core\classes\Store;
 use core\models\Client;
+use core\models\Product;
 
 class Main
 {
@@ -22,6 +23,13 @@ class Main
 
     public function store()
     {
+
+        $product = new Product();
+        $productList = $product->productList();
+
+        d($productList);
+        die();
+
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
