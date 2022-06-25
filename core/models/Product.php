@@ -6,11 +6,23 @@ use core\classes\Database;
 
 class Product
 {
-    public function productList()
+    public function productList($category)
     {
-        $db = new Database();
-        $product = $db->select('SELECT * FROM produtos WHERE status_pdt = 1');
+        $db     = new Database();
+        $search = 'SELECT * FROM produtos WHERE status_pdt = 1';
 
-        return $product;
+        if ($category != 'todos') {
+            $search .= " AND categoria_pdt = '" . $category . "'";
+        }
+
+        return $db->select($search);
+    }
+
+    public function searchCategories()
+    {
+        $db     = new Database();
+        $search = 'SELECT DISTINCT categoria_pdt FROM produtos';
+
+        return $db->select($search);
     }
 }

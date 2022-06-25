@@ -25,7 +25,8 @@ class Main
     {
 
         $product = new Product();
-        $productList = $product->productList();
+
+        $productList = $product->productList($_GET['c']);
 
         Store::layout([
             'layouts/html_header.php',
