@@ -24,9 +24,9 @@ class Main
     public function store()
     {
 
-        $product = new Product();
-
+        $product     = new Product();
         $productList = $product->productList($_GET['c']);
+        $categories  = $product->searchCategories();
 
         Store::layout([
             'layouts/html_header.php',
@@ -36,6 +36,7 @@ class Main
             'layouts/html_footer.html'
         ], [
             'products'  => $productList,
+            'categories'=> $categories,
         ]);
     }
 
