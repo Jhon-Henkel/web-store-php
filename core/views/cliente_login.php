@@ -21,7 +21,7 @@
                     </div>
             </form>
 
-            <?php if ($_SESSION['error']): ?>
+            <?php if (isset($_SESSION['error'])): ?>
                 <div class="alert alert-danger text-center">
                     <?= $_SESSION['error'] ?>
                     <?php unset($_SESSION['error']) ?>

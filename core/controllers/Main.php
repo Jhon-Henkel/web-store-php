@@ -6,7 +6,6 @@ use core\classes\Database;
 use core\classes\Mail;
 use core\classes\Store;
 use core\models\Client;
-use Symfony\Component\Mime\Email;
 
 class Main
 {
@@ -178,6 +177,19 @@ class Main
             return;
         }
 
+        $user = (trim(strtolower($_POST['user_email'])));
+        $pass = $_POST['user_pass'];
+
+        $client = new Client();
+        $isValid = $client->validateLogin($user, $pass);
+
+        if (!$isValid) {
+            $_SESSION['error'] = 'Login Inválido';
+            Store::redirect('login');
+            return;
+        }
+
+        d($isValid);
 
     }
 

@@ -82,4 +82,30 @@ class Client
 
         return true;
     }
+
+    public function validateLogin($user, $pass)
+    {
+        $params = [
+            ':user' => $user,
+        ];
+
+        $db = new Database();
+        $results = $db->select('
+            SELECT * FROM clientes 
+            WHERE email_cliente = :user 
+            AND status_cliente = 1 ', $params);
+
+        if (count($results) == 0 || !is_null($results[0]->data_delete)) {
+            return false;
+        } else {
+
+            $user = $results[0];
+
+            if (!password_verify($pass, $user->senha_cliente)) {
+                return false;
+            }
+
+            return $user;
+        }
+    }
 }
