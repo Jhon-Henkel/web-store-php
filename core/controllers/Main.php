@@ -142,7 +142,43 @@ class Main
 
     public function login()
     {
-        echo 'login';
+        if (Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'cliente_login.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ]);
+    }
+
+    public function loginSubmit()
+    {
+        if (Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            Store::redirect('inicio');
+            return;
+        }
+
+        if (
+            !isset($_POST['user_email'])
+            || !isset($_POST['user_pass'])
+            || !filter_var(trim($_POST['user_email']), FILTER_VALIDATE_EMAIL)
+        ) {
+            $_SESSION['error'] = 'E-mail ou senha inválido, tente novamente';
+            Store::redirect('login');
+            return;
+        }
+
+
     }
 
     public function cart()

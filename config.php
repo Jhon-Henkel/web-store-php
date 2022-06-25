@@ -2,7 +2,7 @@
 
 const APP_NAME          = 'PhpWebStore';
 const APP_VERSION       = '1.0.0';
-const BASE_URL          = 'http://localhost/Web-Store/public/index.php/';
+const BASE_URL          = 'http://localhost/Web-Store/public/';
 
 //MYSQL
 const MYSQL_SERVER      = 'localhost';
