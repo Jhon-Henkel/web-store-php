@@ -19,6 +19,7 @@ class Mail
         try {
             //server settings
             $mail->SMTPDebug    = SMTP::DEBUG_OFF;
+            $mail->CharSet      = 'UTF-8';
             $mail->isSMTP();
             $mail->Host         = EMAIL_HOST;
             $mail->SMTPAuth     = true;
@@ -47,7 +48,7 @@ class Mail
      */
     public function sendEmailRegisterConfirm($clientEmail, $purl)
     {
-        $link = BASE_URL . '?pagina=confirmar_registro&purl=' . $purl;
+        $link = BASE_URL . '?pagina=confirmar_email&purl=' . $purl;
 
         $subject = APP_NAME . ' - Confirmação de cadastro';
         $content = '<p>Seja bem-vindo a nossa loja ' . APP_NAME . '.</p>';

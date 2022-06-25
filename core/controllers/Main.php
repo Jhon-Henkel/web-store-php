@@ -93,6 +93,35 @@ class Main
 
     }
 
+    public function confirmMail()
+    {
+        if (Store::isClientLogged()) {
+            $this->index();
+            return;
+        }
+
+        //verifica se veio purl
+        if (!isset($_GET['purl'])) {
+            $this->index();
+            return;
+        }
+
+        //valida o purl valido
+        if (strlen($_GET['purl']) != 32) {
+            $this->index();
+            return;
+        }
+
+        $client = new Client();
+        $clientConfirm = $client->validateRegister($_GET['purl']);
+
+        if ($clientConfirm) {
+            echo 'Conta verificada com sucesso!';
+        } else {
+            echo 'A conta não foi validada!';
+        }
+    }
+
     public function cart()
     {
         Store::layout([

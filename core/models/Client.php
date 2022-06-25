@@ -49,7 +49,7 @@ class Client
                 :purl_cliente,
                 :status_cliente,
                 NOW(),
-                NOW(),
+                null,
                 null
             )
         ", $params);
@@ -57,4 +57,29 @@ class Client
         return $purl;
     }
 
+    public function validateRegister($purl)
+    {
+        $db = new Database();
+        $params = [':purl' => $purl];
+        $result = $db->select('SELECT * FROM clientes WHERE purl_cliente = :purl', $params);
+
+        if (count($result) != 1) {
+            return false;
+        }
+
+        $idClient = $result[0]->id_cliente;
+
+        $params = [
+            ':idCliente' => $idClient
+        ];
+        $db->update('UPDATE clientes 
+                SET 
+                    status_cliente = 1, 
+                    purl_cliente = null, 
+                    data_modificacao = NOW() 
+                WHERE 
+                    id_cliente = :idCliente', $params);
+
+        return true;
+    }
 }
