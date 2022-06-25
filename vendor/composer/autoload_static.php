@@ -29,6 +29,7 @@ class ComposerStaticInit7f170d748ab2c3b1f532888f8136ac6b
             'Symfony\\Contracts\\Service\\' => 26,
             'Symfony\\Contracts\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Mime\\' => 23,
+            'Symfony\\Component\\Mailer\\Bridge\\Sendgrid\\' => 41,
             'Symfony\\Component\\Mailer\\Bridge\\Google\\' => 39,
             'Symfony\\Component\\Mailer\\' => 25,
             'Symfony\\Component\\EventDispatcher\\' => 34,
@@ -38,6 +39,7 @@ class ComposerStaticInit7f170d748ab2c3b1f532888f8136ac6b
             'Psr\\Log\\' => 8,
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'K' => 
         array (
@@ -90,6 +92,10 @@ class ComposerStaticInit7f170d748ab2c3b1f532888f8136ac6b
         array (
             0 => __DIR__ . '/..' . '/symfony/mime',
         ),
+        'Symfony\\Component\\Mailer\\Bridge\\Sendgrid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/sendgrid-mailer',
+        ),
         'Symfony\\Component\\Mailer\\Bridge\\Google\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/google-mailer',
@@ -113,6 +119,10 @@ class ComposerStaticInit7f170d748ab2c3b1f532888f8136ac6b
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Kint\\' => 
         array (

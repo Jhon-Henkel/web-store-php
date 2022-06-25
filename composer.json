@@ -23,6 +23,8 @@
     "require": {
         "ext-pdo": "*",
         "symfony/mailer": "^6.1",
-        "symfony/google-mailer": "^6.1"
+        "symfony/google-mailer": "^6.1",
+        "symfony/sendgrid-mailer": "^6.1",
+        "phpmailer/phpmailer": "^6.6"
     }
 }

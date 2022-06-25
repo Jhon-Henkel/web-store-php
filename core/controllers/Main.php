@@ -3,8 +3,10 @@
 namespace core\controllers;
 
 use core\classes\Database;
+use core\classes\Mail;
 use core\classes\Store;
 use core\models\Client;
+use Symfony\Component\Mime\Email;
 
 class Main
 {
@@ -79,10 +81,16 @@ class Main
 
         $purl = $client->insertClient();
 
-        //criar o link purl para enviar por e-mail
-        $link_purl = 'https://loja.com.br/?pagina=confirmar_email&purl=' . $purl;
+        //envia o e-mail para o cliente
+        $email = new Mail();
+        $sendEmail = $email->sendEmailRegisterConfirm(strtolower(trim($_POST['cliente_email'])), $purl);
 
-        die('cadastrado');
+        if ($sendEmail) {
+            echo 'email enviado';
+        } else {
+            echo 'aconteceu um erro';
+        }
+
     }
 
     public function cart()
