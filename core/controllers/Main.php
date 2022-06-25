@@ -189,8 +189,20 @@ class Main
             return;
         }
 
-        d($isValid);
+        $_SESSION['client']     = $isValid->id_cliente;
+        $_SESSION['email']      = $isValid->email_cliente;
+        $_SESSION['clientName'] = $isValid->nome_cliente;
 
+        Store::redirect('inicio');
+    }
+
+    public function logout()
+    {
+        unset ($_SESSION['client']);
+        unset ($_SESSION['email']);
+        unset ($_SESSION['clientName']);
+
+        Store::redirect('inicio');
     }
 
     public function cart()

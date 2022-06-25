@@ -16,8 +16,12 @@ use core\classes\Store;
 
             <!--verifica se existe cliente na sessão-->
             <?php if (store::isClientLogged()): ?>
-                <a href="?pagina=cliente_area" class="nav-item">Minha conta</a>
-                <a href="?pagina=logout" class="nav-item">Logout</a>
+                <i class="fa-solid fa-house-chimney-user text-white"></i>
+                <?= $_SESSION['clientName'] ?>
+
+                <a href="?pagina=logout" class="nav-item">
+                    <i class="fa-solid fa-arrow-right-from-bracket text-white"></i>
+                </a>
             <?php else: ?>
                 <a href="?pagina=cliente_cadastro" class="nav-item">Criar conta</a>
                 <a href="?pagina=login" class="nav-item">Login</a>

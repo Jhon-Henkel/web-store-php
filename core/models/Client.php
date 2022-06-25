@@ -93,9 +93,10 @@ class Client
         $results = $db->select('
             SELECT * FROM clientes 
             WHERE email_cliente = :user 
-            AND status_cliente = 1 ', $params);
+            AND status_cliente = 1
+            AND data_delete IS NULL', $params);
 
-        if (count($results) == 0 || !is_null($results[0]->data_delete)) {
+        if (count($results) == 0) {
             return false;
         } else {
 
