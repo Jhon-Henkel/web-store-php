@@ -1,6 +1,12 @@
 <?php
 use core\classes\Store;
-//$_SESSION['client'] = true;
+
+$totalPdt = 0;
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $pdt) {
+        $totalPdt += $pdt;
+    }
+}
 ?>
 
 <div class="container-fluid navigation">
@@ -28,7 +34,7 @@ use core\classes\Store;
             <?php endif; ?>
 
             <a href="?pagina=carrinho"><i class="fa-solid fa-cart-shopping"></i></i></a>
-            <span class="badge bg-warning"></span>
+            <span class="badge bg-warning" id="cartPdt"><?= $totalPdt ?></span>
         </div>
     </div>
 </div>

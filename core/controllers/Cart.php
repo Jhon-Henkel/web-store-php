@@ -18,7 +18,7 @@ class Cart
         if (key_exists($idPdt, $cart)) {
             $cart['$idPdt'] ++;
         } else {
-            $cart[] = [$idPdt => 1];
+            $cart[$idPdt] = 1;
         }
 
         $_SESSION['cart'] = $cart;
@@ -29,6 +29,11 @@ class Cart
         }
 
         echo $totalPdt;
+    }
+
+    public function cleanCart()
+    {
+        $_SESSION['cart'] = [];
     }
 
     public function cart()

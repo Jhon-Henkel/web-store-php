@@ -16,6 +16,7 @@ $rotas = array(
 
     //checkout
     'carrinho_add'      => 'cart@addToCart',
+    'clean_cart'        => 'cart@cleanCart',
     'carrinho'          => 'cart@cart',
 );
 
