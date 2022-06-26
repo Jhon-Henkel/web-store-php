@@ -8,10 +8,27 @@ class Cart
 {
     public function addToCart()
     {
-        $idPdt = $_GET['id_pdt'];
-        $_SESSION[''] = $idPdt;
+        $idPdt  = $_GET['id_pdt'];
+        $cart   = array();
 
-        echo 'Adicionado ao carrinho';
+        if (isset($_SESSION['cart'])) {
+            $cart = $_SESSION['cart'];
+        }
+
+        if (key_exists($idPdt, $cart)) {
+            $cart['$idPdt'] ++;
+        } else {
+            $cart[] = [$idPdt => 1];
+        }
+
+        $_SESSION['cart'] = $cart;
+
+        $totalPdt = 0;
+        foreach ($cart as $pdt) {
+            $totalPdt += $pdt;
+        }
+
+        echo $totalPdt;
     }
 
     public function cart()
