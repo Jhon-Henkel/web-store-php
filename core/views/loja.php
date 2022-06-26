@@ -26,9 +26,12 @@
                     <div class="text-center p-3 card">
                         <img class="img-fluid" src="assets/images/products/<?= $product->imagem_pdt ?>">
                         <h3><?= $product->nome_pdt ?></h3>
-                        <h2><?= $product->preco_pdt ?></h2>
+                        <h2><?= 'R$ ' . preg_replace('/\./', ',', $product->preco_pdt) ?></h2>
                         <div>
-                            <button class="btn btn-primary">+ Carrinho</button>
+                            <button class="btn btn-primary btn-sm" onclick="addToCart(<?= $product->id_pdt ?>)">
+                                <i class="fa-solid fa-cart-shopping me-2"></i>
+                                Adicionar
+                            </button>
                         </div>
                     </div>
                 </div>

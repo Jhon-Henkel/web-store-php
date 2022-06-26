@@ -212,15 +212,4 @@ class Main
 
         Store::redirect('inicio');
     }
-
-    public function cart()
-    {
-        Store::layout([
-            'layouts/html_header.php',
-            'layouts/header.php',
-            'carrinho.php',
-            'layouts/footer.php',
-            'layouts/html_footer.html'
-        ]);
-    }
 }
