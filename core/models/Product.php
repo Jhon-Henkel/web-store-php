@@ -39,4 +39,10 @@ class Product
         $results = $db->select('SELECT * FROM produtos WHERE id_pdt = :idPdt AND status_pdt = 1 AND qtd_pdt_estoque > 0', $params);
         return count($results) != 0 ? true : false;
     }
+
+    public function searchProductsIds($ids)
+    {
+        $db = new Database();
+        return $db->select('SELECT * FROM produtos WHERE id_pdt IN (' . $ids . ')');
+    }
 }

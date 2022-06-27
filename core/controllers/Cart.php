@@ -52,12 +52,30 @@ class Cart
 
     public function cart()
     {
+        if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
+            $data = ['cart' => null];
+        } else {
+            $ids = array();
+            foreach ($_SESSION['cart'] as $id => $qtd) {
+                $ids[] = $id;
+            }
+
+            $ids = implode(',', $ids);
+
+            $product = new Product();
+            $results = $product->searchProductsIds($ids);
+
+            d($results);
+
+            $data = ['cart' => 1];
+        }
+
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
             'carrinho.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
-        ]);
+        ], $data);
     }
 }
