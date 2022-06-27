@@ -6,11 +6,3 @@ function addToCart(id_pdt) {
             document.getElementById('cartPdt').innerText = response.data;
         });
 }
-
-function cleanCart() {
-    axios.default.withCredentials = true;
-    axios.get('?pagina=clean_cart')
-        .then(function (response){
-            document.getElementById('cartPdt').innerText = 0;
-        });
-}

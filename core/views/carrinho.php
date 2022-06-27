@@ -4,7 +4,8 @@
 
             <h3>Carrinho</h3>
 
-            <button class="btn btn-primary" onclick="cleanCart()">Limpar carrinho</button>
+            <a href="?pagina=clean_cart" class="btn btn-primary btn-sm">Limpar carrinho</a>
+
         </div>
     </div>
 </div>

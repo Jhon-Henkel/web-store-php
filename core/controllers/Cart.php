@@ -3,20 +3,33 @@
 namespace core\controllers;
 
 use core\classes\Store;
+use core\models\Product;
 
 class Cart
 {
     public function addToCart()
     {
-        $idPdt  = $_GET['id_pdt'];
-        $cart   = array();
+        if (!isset($_GET['id_pdt'])) {
+            echo $_SESSION['cart'] ?? 0;
+            return;
+        }
+
+        $idPdt      = $_GET['id_pdt'];
+        $cart       = array();
+        $product    = new Product();
+        $results    = $product->validateStockProduct($idPdt);
+
+        if (!$results) {
+            echo $_SESSION['cart'] ?? 0;
+            return;
+        }
 
         if (isset($_SESSION['cart'])) {
             $cart = $_SESSION['cart'];
         }
 
         if (key_exists($idPdt, $cart)) {
-            $cart['$idPdt'] ++;
+            $cart[$idPdt] ++;
         } else {
             $cart[$idPdt] = 1;
         }
@@ -33,7 +46,8 @@ class Cart
 
     public function cleanCart()
     {
-        $_SESSION['cart'] = [];
+        unset ($_SESSION['cart']);
+        $this->cart();
     }
 
     public function cart()

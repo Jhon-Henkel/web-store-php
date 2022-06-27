@@ -31,4 +31,12 @@ class Product
 
         return $categories;
     }
+
+    public function validateStockProduct($idPdt): bool
+    {
+        $db = new Database();
+        $params = [':idPdt' => $idPdt];
+        $results = $db->select('SELECT * FROM produtos WHERE id_pdt = :idPdt AND status_pdt = 1 AND qtd_pdt_estoque > 0', $params);
+        return count($results) != 0 ? true : false;
+    }
 }

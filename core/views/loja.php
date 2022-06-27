@@ -28,10 +28,17 @@
                         <h3><?= $product->nome_pdt ?></h3>
                         <h2><?= 'R$ ' . preg_replace('/\./', ',', $product->preco_pdt) ?></h2>
                         <div>
-                            <button class="btn btn-primary btn-sm" onclick="addToCart(<?= $product->id_pdt ?>)">
-                                <i class="fa-solid fa-cart-shopping me-2"></i>
-                                Adicionar
-                            </button>
+                            <?php if ($product->qtd_pdt_estoque <= 0): ?>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-cart-shopping me-2"></i>
+                                    Out of stock
+                                </button>
+                            <?php else: ?>
+                                <button class="btn btn-primary btn-sm" onclick="addToCart(<?= $product->id_pdt ?>)">
+                                    <i class="fa-solid fa-cart-shopping me-2"></i>
+                                    Adicionar
+                                </button>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
