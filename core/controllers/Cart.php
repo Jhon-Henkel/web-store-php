@@ -65,17 +65,17 @@ class Cart
             $product = new Product();
             $results = $product->searchProductsIds($ids);
 
-            $dataTmp = array();
+            $data = array();
             foreach ($_SESSION['cart'] as $idPdt => $qtdTmp) {
                 foreach ($results as $product) {
                     if ($product->id_pdt == $idPdt) {
 
                         $image = $product->imagem_pdt;
-                        $title = $product->nome_produto;
+                        $title = $product->nome_pdt;
                         $qtd = $qtdTmp;
                         $price = $product->preco_pdt * $qtd;
 
-                        $dataTmp[] = [
+                        $data[] = [
                             'imagem' => $image,
                             'title' => $title,
                             'qtd' => $qtd,
@@ -85,7 +85,15 @@ class Cart
                     }
                 }
             }
-            d($dataTmp);
+
+            $totalPrice = 0;
+
+            foreach ($data as $item) {
+                $totalPrice += $item['price'];
+            }
+
+            $data['total'] = $totalPrice;
+            d($data);
         }
 
         Store::layout([
