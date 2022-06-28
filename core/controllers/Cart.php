@@ -53,7 +53,7 @@ class Cart
     public function cart()
     {
         if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
-            $data = ['cart' => null];
+            $cart = ['cart' => null];
         } else {
             $ids = array();
             foreach ($_SESSION['cart'] as $id => $qtd) {
@@ -76,9 +76,9 @@ class Cart
                         $price = $product->preco_pdt * $qtd;
 
                         $data[] = [
-                            'imagem' => $image,
+                            'image' => $image,
                             'title' => $title,
-                            'qtd' => $qtd,
+                            'qtd'   => $qtd,
                             'price' => $price
                         ];
                         break;
@@ -93,7 +93,7 @@ class Cart
             }
 
             $data['total'] = $totalPrice;
-            d($data);
+            $cart = ['cart' => $data];
         }
 
         Store::layout([
@@ -102,6 +102,6 @@ class Cart
             'carrinho.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
-        ], $data);
+        ], $cart);
     }
 }
