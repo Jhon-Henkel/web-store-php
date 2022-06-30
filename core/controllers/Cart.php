@@ -53,7 +53,7 @@ class Cart
     public function cart()
     {
         if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
-            $cart = ['cart' => null];
+            $data = ['cart' => null];
         } else {
             $ids = array();
             foreach ($_SESSION['cart'] as $id => $qtd) {
@@ -93,7 +93,7 @@ class Cart
             }
 
             $data['total'] = $totalPrice;
-            $cart = ['cart' => $data];
+            $data = ['cart' => $data];
         }
 
         Store::layout([
@@ -102,6 +102,6 @@ class Cart
             'carrinho.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
-        ], $cart);
+        ], $data);
     }
 }
