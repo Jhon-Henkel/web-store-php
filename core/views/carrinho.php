@@ -44,7 +44,7 @@
                                                     <td><img class="img-fluid" width="50px" src="assets/images/products/<?=$product['image']?>"></td>
                                                     <td class="align-middle"><h6><?= $product['title'] ?></h6></td>
                                                     <td class="text-center align-middle"><h6><?= $product['qtd'] ?></h6></td>
-                                                    <td class="text-end align-middle"><h6><b><?= 'R$ ' . str_replace('.',',', $product['price']) ?></b></h6></td>
+                                                    <td class="text-end align-middle"><h6><b><?= 'R$ ' . number_format($product['price'], 2, ',', '.') ?></b></h6></td>
                                                     <td class="text-center align-middle">
                                                         <a href="?pagina=remover_produto&idPdt=<?= $product['id'] ?>" class="btn btn-danger btn-sm">
                                                             <i class="fa-solid fa-trash"></i>
@@ -56,7 +56,7 @@
                                                     <td></td>
                                                     <td></td>
                                                     <td class="text-end"><h5><b>Total:</b></h5></td>
-                                                    <td class="text-end align-middle"><h5><b><?= 'R$ ' . str_replace('.',',', $data['cart']['total']) ?></b></h5></td>
+                                                    <td class="text-end align-middle"><h5><b><?= 'R$ ' .  number_format($data['cart']['total'], 2, ',', '.') ?></b></h5></td>
                                                     <td></td>
                                                 </tr>
                                             <?php endif;?>
@@ -66,7 +66,16 @@
                                 </table>
                                 <div class="row">
                                     <div class="col">
-                                        <a href="?pagina=clean_cart" class="btn btn-primary btn-sm">Limpar carrinho</a>
+                                        <button class="btn btn-primary btn-sm" onclick="confirmExcludeCart()">Limpar carrinho</button>
+                                        <span class="ms-3" style="display: none" id="confirmExcludeCart">
+                                            Tem Certeza?
+                                            <a class="btn btn-outline-success btn-sm" href="?pagina=clean_cart">
+                                                Sim
+                                            </a>
+                                            <button onclick="confirmExcludeCartOff()" class="btn btn-outline-danger btn-sm">
+                                                Não
+                                            </button>
+                                        </span>
                                     </div>
                                     <div class="col text-end">
                                         <a href="?pagina=loja" class="btn btn-primary btn-sm">Continuar comprando</a>

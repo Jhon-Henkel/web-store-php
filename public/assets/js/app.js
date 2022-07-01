@@ -6,3 +6,13 @@ function addToCart(id_pdt) {
             document.getElementById('cartPdt').innerText = response.data;
         });
 }
+
+function confirmExcludeCart() {
+    var elementExclude = document.getElementById("confirmExcludeCart");
+    elementExclude.style.display = "inline";
+}
+
+function confirmExcludeCartOff() {
+    var elementExclude = document.getElementById("confirmExcludeCart");
+    elementExclude.style.display = "none";
+}

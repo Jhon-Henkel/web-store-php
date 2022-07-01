@@ -47,7 +47,7 @@ class Cart
     public function cleanCart()
     {
         unset ($_SESSION['cart']);
-        $this->cart();
+        Store::redirect('carrinho');
     }
 
     public function cart()
