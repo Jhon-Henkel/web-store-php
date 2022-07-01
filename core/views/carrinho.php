@@ -56,7 +56,13 @@
                                                     <td></td>
                                                     <td></td>
                                                     <td class="text-end"><h5><b>Total:</b></h5></td>
-                                                    <td class="text-end align-middle"><h5><b><?= 'R$ ' .  number_format($data['cart']['total'], 2, ',', '.') ?></b></h5></td>
+                                                    <td class="text-end align-middle">
+                                                        <h5>
+                                                            <b>
+                                                                <?= 'R$ ' .  number_format($data['cart']['total'], 2, ',', '.') ?>
+                                                            </b>
+                                                        </h5>
+                                                    </td>
                                                     <td></td>
                                                 </tr>
                                             <?php endif;?>
@@ -79,7 +85,7 @@
                                     </div>
                                     <div class="col text-end">
                                         <a href="?pagina=loja" class="btn btn-primary btn-sm">Continuar comprando</a>
-                                        <a href="?pagina=" class="btn btn-primary btn-sm">Finalizar pedido ></a>
+                                        <a href="?pagina=finalizar_pedido" class="btn btn-primary btn-sm">Finalizar pedido ></a>
                                     </div>
                                 </div>
                             </div>

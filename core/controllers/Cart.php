@@ -115,4 +115,14 @@ class Cart
         $_SESSION['cart'] = $cart;
         Store::redirect('carrinho');
     }
+
+    public function finishOrder()
+    {
+        if (!Store::isClientLogged()) {
+            $_SESSION['tmpCart'] = true;
+            Store::redirect('login');
+        }
+
+
+    }
 }

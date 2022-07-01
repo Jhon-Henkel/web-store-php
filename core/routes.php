@@ -19,6 +19,7 @@ $rotas = array(
     'remover_produto'   => 'cart@removeProduct',
     'clean_cart'        => 'cart@cleanCart',
     'carrinho'          => 'cart@cart',
+    'finalizar_pedido'  => 'cart@finishOrder',
 );
 
 //define a ação caso a rota não esteja mapeada em rodas

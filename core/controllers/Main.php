@@ -201,7 +201,12 @@ class Main
         $_SESSION['email']      = $isValid->email_cliente;
         $_SESSION['clientName'] = $isValid->nome_cliente;
 
-        Store::redirect('inicio');
+        if (isset($_SESSION['tmpCart'])) {
+            unset($_SESSION['tmpCart']);
+            Store::redirect('carrinho');
+        } else {
+            Store::redirect('inicio');
+        }
     }
 
     public function logout()
