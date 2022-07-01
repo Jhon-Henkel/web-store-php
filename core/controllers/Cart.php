@@ -70,12 +70,14 @@ class Cart
                 foreach ($results as $product) {
                     if ($product->id_pdt == $idPdt) {
 
+                        $idPdt = $product->id_pdt;
                         $image = $product->imagem_pdt;
                         $title = $product->nome_pdt;
-                        $qtd = $qtdTmp;
+                        $qtd   = $qtdTmp;
                         $price = $product->preco_pdt * $qtd;
 
                         $data[] = [
+                            'id'    => $idPdt,
                             'image' => $image,
                             'title' => $title,
                             'qtd'   => $qtd,
@@ -103,5 +105,14 @@ class Cart
             'layouts/footer.php',
             'layouts/html_footer.html'
         ], $data);
+    }
+
+    public function removeProduct()
+    {
+        $idPdt = $_GET['idPdt'];
+        $cart  = $_SESSION['cart'];
+        unset($cart[$idPdt]);
+        $_SESSION['cart'] = $cart;
+        Store::redirect('carrinho');
     }
 }

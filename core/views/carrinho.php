@@ -34,28 +34,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php
-                                        $index = 0;
-                                        $totalRows = count($data['cart']);
-                                    ?>
-                                    <?php foreach ($data['cart'] as $product): ?>
+                                        <?php
+                                            $index = 0;
+                                            $totalRows = count($data['cart']);
+                                        ?>
+                                        <?php foreach ($data['cart'] as $product): ?>
                                             <?php if ($index < $totalRows -1): ?>
-                                            <tr>
-                                                <td><img class="img-fluid" width="50px" src="assets/images/products/<?=$product['image']?>"></td>
-                                                <td class="align-middle"><h6><?= $product['title'] ?></h6></td>
-                                                <td class="text-center align-middle"><h6><?= $product['qtd'] ?></h6></td>
-                                                <td class="text-end align-middle"><h6><b><?= 'R$ ' . str_replace('.',',', $product['price']) ?></b></h6></td>
-                                                <td class="text-center align-middle"><button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button></td>
-                                            </tr>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-end"><h5><b>Total:</b></h5></td>
-                                                <td class="text-end align-middle"><h5><b><?= 'R$ ' . str_replace('.',',', $data['cart']['total']) ?></b></h5></td>
-                                                <td></td>
-                                            </tr>
-                                        <?php endif;?>
+                                                <tr>
+                                                    <td><img class="img-fluid" width="50px" src="assets/images/products/<?=$product['image']?>"></td>
+                                                    <td class="align-middle"><h6><?= $product['title'] ?></h6></td>
+                                                    <td class="text-center align-middle"><h6><?= $product['qtd'] ?></h6></td>
+                                                    <td class="text-end align-middle"><h6><b><?= 'R$ ' . str_replace('.',',', $product['price']) ?></b></h6></td>
+                                                    <td class="text-center align-middle">
+                                                        <a href="?pagina=remover_produto&idPdt=<?= $product['id'] ?>" class="btn btn-danger btn-sm">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php else: ?>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="text-end"><h5><b>Total:</b></h5></td>
+                                                    <td class="text-end align-middle"><h5><b><?= 'R$ ' . str_replace('.',',', $data['cart']['total']) ?></b></h5></td>
+                                                    <td></td>
+                                                </tr>
+                                            <?php endif;?>
                                             <?php $index ++ ?>
                                         <?php endforeach; ?>
                                     </tbody>
