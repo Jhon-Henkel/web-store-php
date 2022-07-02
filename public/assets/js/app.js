@@ -16,3 +16,12 @@ function confirmExcludeCartOff() {
     var elementExclude = document.getElementById("confirmExcludeCart");
     elementExclude.style.display = "none";
 }
+
+function alterarEndereco() {
+    var endereco = document.getElementById("alterarEndereco");
+    if (endereco.checked === true) {
+        document.getElementById("novoEndereco").style.display = 'block';
+    } else {
+        document.getElementById("novoEndereco").style.display = 'none';
+    }
+}

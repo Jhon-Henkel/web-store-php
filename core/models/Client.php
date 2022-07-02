@@ -118,7 +118,7 @@ class Client
             ':id_client' => $client
         ];
 
-        $results = $db->select('SELECT * FROM clientes WHERE id_cliente = :id_client', $params);
+        $results = $db->select('SELECT email_cliente, nome_cliente, endereco_cliente, cidade_cliente, telefone_cliente FROM clientes WHERE id_cliente = :id_client', $params);
         return $results[0];
     }
 }

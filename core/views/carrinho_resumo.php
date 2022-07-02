@@ -53,7 +53,26 @@
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            <h5 class="bg-dark text-white p-2">Dados do Cliente</h5>
                             <div class="row">
+                                <div class="col">
+                                    <p>Nome:</p><strong><?= $data['client']->nome_cliente ?></strong>
+                                    <p>Endereço:</p><strong><?= $data['client']->endereco_cliente ?></strong>
+                                    <p>Cidade:</p><strong><?= $data['client']->cidade_cliente ?></strong>
+                                </div>
+                                <div class="col">
+                                    <p>Telefone:</p><strong><?= $data['client']->telefone_cliente ?></strong>
+                                    <p>Email:</p><strong><?= $data['client']->email_cliente ?></strong>
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" onchange="alterarEndereco()" type="checkbox" name="alterarEndereco" id="alterarEndereco">
+                                <label class="form-check-label" for="alterarEndereco">Alterar endereço</label>
+                            </div>
+                            <div id="novoEndereco" style="display: none">
+                                Alterar endereço
+                            </div>
+                            <div class="row my-5">
                                 <div class="col">
                                     Cancelar
                                 </div>
