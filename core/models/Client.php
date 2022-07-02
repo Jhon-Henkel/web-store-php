@@ -109,4 +109,16 @@ class Client
             return $user;
         }
     }
+
+    public function searchClient($client)
+    {
+        $db = new Database();
+
+        $params = [
+            ':id_client' => $client
+        ];
+
+        $results = $db->select('SELECT * FROM clientes WHERE id_cliente = :id_client', $params);
+        return $results[0];
+    }
 }

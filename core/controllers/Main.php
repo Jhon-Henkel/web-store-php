@@ -203,7 +203,7 @@ class Main
 
         if (isset($_SESSION['tmpCart'])) {
             unset($_SESSION['tmpCart']);
-            Store::redirect('carrinho');
+            Store::redirect('finalizar_pedido_resumo');
         } else {
             Store::redirect('inicio');
         }

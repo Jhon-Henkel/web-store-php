@@ -3,6 +3,7 @@
 namespace core\controllers;
 
 use core\classes\Store;
+use core\models\Client;
 use core\models\Product;
 
 class Cart
@@ -121,8 +122,72 @@ class Cart
         if (!Store::isClientLogged()) {
             $_SESSION['tmpCart'] = true;
             Store::redirect('login');
+        } else {
+            Store::redirect('finalizar_pedido_resumo');
+        }
+    }
+
+    public function finishOrderResume()
+    {
+        if (!Store::isClientLogged()) {
+            Store::redirect('inicio');
         }
 
+        $ids = array();
+        foreach ($_SESSION['cart'] as $id => $qtd) {
+            $ids[] = $id;
+        }
 
+        $ids = implode(',', $ids);
+
+        $product = new Product();
+        $results = $product->searchProductsIds($ids);
+
+        $cart = array();
+        foreach ($_SESSION['cart'] as $idPdt => $qtdTmp) {
+            foreach ($results as $product) {
+                if ($product->id_pdt == $idPdt) {
+
+                    $idPdt = $product->id_pdt;
+                    $image = $product->imagem_pdt;
+                    $title = $product->nome_pdt;
+                    $qtd   = $qtdTmp;
+                    $price = $product->preco_pdt * $qtd;
+
+                    $cart[] = [
+                        'id'    => $idPdt,
+                        'image' => $image,
+                        'title' => $title,
+                        'qtd'   => $qtd,
+                        'price' => $price
+                    ];
+                    break;
+                }
+            }
+        }
+
+        $totalPrice = 0;
+
+        foreach ($cart as $item) {
+            $totalPrice += $item['price'];
+        }
+
+        $client = new Client();
+        $clientData = $client->searchClient($_SESSION['client']);
+
+        $data = [
+            'cart'  => $cart,
+            'client'=> $clientData,
+            'total' => $totalPrice
+        ];
+        d($data);
+
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'carrinho_resumo.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ], $data);
     }
 }
