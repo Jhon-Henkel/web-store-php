@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col">
                         <hr>
-                        <h3 class="text-center my-4">Resumo</h3>
+                            <h3 class="text-center my-4">Resumo</h3>
                         <hr>
                     </div>
                 </div>
@@ -56,13 +56,13 @@
                             <h5 class="bg-dark text-white p-2">Dados do Cliente</h5>
                             <div class="row">
                                 <div class="col">
-                                    <p>Nome:</p><strong><?= $data['client']->nome_cliente ?></strong>
-                                    <p>Endereço:</p><strong><?= $data['client']->endereco_cliente ?></strong>
-                                    <p>Cidade:</p><strong><?= $data['client']->cidade_cliente ?></strong>
+                                    <p>Nome: <strong><?= $data['client']->nome_cliente ?></strong></p>
+                                    <p>Endereço: <strong><?= $data['client']->endereco_cliente ?></strong></p>
+                                    <p>Cidade: <strong><?= $data['client']->cidade_cliente ?></strong></p>
                                 </div>
                                 <div class="col">
-                                    <p>Telefone:</p><strong><?= $data['client']->telefone_cliente ?></strong>
-                                    <p>Email:</p><strong><?= $data['client']->email_cliente ?></strong>
+                                    <p>Telefone: <strong><?= $data['client']->telefone_cliente ?></strong></p>
+                                    <p>Email: <strong><?= $data['client']->email_cliente ?></strong></p>
                                 </div>
                             </div>
                             <div class="form-check">

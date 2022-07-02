@@ -180,7 +180,6 @@ class Cart
             'client'=> $clientData,
             'total' => $totalPrice
         ];
-        d($data);
 
         Store::layout([
             'layouts/html_header.php',
