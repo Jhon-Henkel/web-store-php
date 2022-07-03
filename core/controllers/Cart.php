@@ -181,6 +181,11 @@ class Cart
             'total' => $totalPrice
         ];
 
+        if (!isset($_SESSION['orderCode'])) {
+            $orderCode = Store::generateOrderCode();
+            $_SESSION['orderCode'] = $orderCode;
+        }
+
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',

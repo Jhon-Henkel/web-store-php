@@ -65,6 +65,17 @@
                                     <p>Email: <strong><?= $data['client']->email_cliente ?></strong></p>
                                 </div>
                             </div>
+
+                            <h5 class="bg-dark text-white p-2">Dados para pagamento</h5>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Pix: 3258741</p>
+                                    <p>Código do pedido: <strong><?= $_SESSION['orderCode'] ?></strong></p>
+                                    <p>Total: <strong><?= 'R$' . number_format($data['total'], 2,',', ',') ?></strong></p>
+                                </div>
+                            </div>
+
+                            <h5 class="bg-dark text-white p-2">Endereço alternativo</h5>
                             <div class="form-check">
                                 <input class="form-check-input" onchange="showAlterarEndereco()" type="checkbox" name="alterarEndereco" id="alterarEndereco">
                                 <label class="form-check-label" for="alterarEndereco">Alterar endereço</label>
@@ -92,7 +103,7 @@
                                     <a class="btn btn-danger" href="?pagina=carrinho">Cancelar</a>
                                 </div>
                                 <div class="col text-end">
-                                    <a class="btn btn-primary" href="?pagina=escolher_forma_pagamento" onclick="alternativeData()">Escolher método de pagamento</a>
+                                    <a class="btn btn-primary" href="?pagina=escolher_forma_pagamento" onclick="alternativeData()">Finalizar Pedido</a>
                                 </div>
                             </div>
                         </div>

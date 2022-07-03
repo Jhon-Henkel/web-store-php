@@ -36,4 +36,13 @@ class Store
     {
         header('location:' . BASE_URL . '?pagina=' . $route);
     }
+
+    public static function generateOrderCode(): string
+    {
+        $cod = '';
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $cod .= substr(str_shuffle($chars), 0,2);
+        $cod .= rand(100000, 9999999);
+        return $cod;
+    }
 }
