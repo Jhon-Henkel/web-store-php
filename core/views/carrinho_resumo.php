@@ -30,26 +30,22 @@
                                     $totalRows = count($data['cart']);
                                     ?>
                                     <?php foreach ($data['cart'] as $product): ?>
-                                        <?php if ($index < $totalRows -1): ?>
-                                            <tr>
-                                                <td class="align-middle"><h6><?= $product['title'] ?></h6></td>
-                                                <td class="text-center align-middle"><h6><?= $product['qtd'] ?></h6></td>
-                                                <td class="text-end align-middle"><h6><b><?= 'R$ ' . number_format($product['price'], 2, ',', '.') ?></b></h6></td>
-                                            </tr>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td></td>
-                                                <td class="text-end"><h4><b>Total:</b></h4></td>
-                                                <td class="text-end align-middle">
-                                                    <h4>
-                                                        <b>
-                                                            <?= 'R$ ' .  number_format($data['total'], 2, ',', '.') ?>
-                                                        </b>
-                                                    </h4>
-                                                </td>
-                                            </tr>
-                                        <?php endif;?>
-                                        <?php $index ++ ?>
+                                        <tr>
+                                            <td class="align-middle"><h6><?= $product['title'] ?></h6></td>
+                                            <td class="text-center align-middle"><h6><?= $product['qtd'] ?></h6></td>
+                                            <td class="text-end align-middle"><h6><b><?= 'R$ ' . number_format($product['price'], 2, ',', '.') ?></b></h6></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-end"><h4><b>Total:</b></h4></td>
+                                            <td class="text-end align-middle">
+                                                <h4>
+                                                    <b>
+                                                        <?= 'R$ ' .  number_format($data['total'], 2, ',', '.') ?>
+                                                    </b>
+                                                </h4>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
