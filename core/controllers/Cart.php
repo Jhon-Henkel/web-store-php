@@ -189,4 +189,30 @@ class Cart
             'layouts/html_footer.html'
         ], $data);
     }
+
+    public function payForm()
+    {
+        echo 'payForm';
+//        $_SESSION['dados_alternativos'] = [
+//            'endereco'  => '',
+//            'cidade'    => '',
+//            'email'     => '',
+//            'telefone'  => '',
+//        ];
+
+        d($_SESSION);
+    }
+
+    public function alternativeData()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        $_SESSION['dados_alternativos'] = [
+            'endereco'  => $data['endereco'],
+            'cidade'    => $data['cidade'],
+            'email'     => $data['email'],
+            'telefone'  => $data['telefone']
+        ];
+        d($data);
+    }
 }

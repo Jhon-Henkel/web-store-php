@@ -15,12 +15,14 @@ $rotas = array(
     'logout'            => 'main@logout',
 
     //checkout
-    'carrinho_add'            => 'cart@addToCart',
-    'remover_produto'         => 'cart@removeProduct',
-    'clean_cart'              => 'cart@cleanCart',
-    'carrinho'                => 'cart@cart',
-    'finalizar_pedido'        => 'cart@finishOrder',
-    'finalizar_pedido_resumo' => 'cart@finishOrderResume',
+    'carrinho_add'             => 'cart@addToCart',
+    'remover_produto'          => 'cart@removeProduct',
+    'clean_cart'               => 'cart@cleanCart',
+    'carrinho'                 => 'cart@cart',
+    'finalizar_pedido'         => 'cart@finishOrder',
+    'finalizar_pedido_resumo'  => 'cart@finishOrderResume',
+    'dados_alternativos'       => 'cart@alternativeData',
+    'escolher_forma_pagamento' => 'cart@payForm',
 );
 
 //define a ação caso a rota não esteja mapeada em rodas

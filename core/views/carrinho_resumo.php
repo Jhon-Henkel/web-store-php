@@ -66,18 +66,33 @@
                                 </div>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" onchange="alterarEndereco()" type="checkbox" name="alterarEndereco" id="alterarEndereco">
+                                <input class="form-check-input" onchange="showAlterarEndereco()" type="checkbox" name="alterarEndereco" id="alterarEndereco">
                                 <label class="form-check-label" for="alterarEndereco">Alterar endereço</label>
                             </div>
                             <div id="novoEndereco" style="display: none">
-                                Alterar endereço
+                                <div class="mb-3">
+                                    <label class="form-label" for="enderecoAlternativo">Endereço: </label>
+                                    <input class="form-control" type="text" id="enderecoAlternativo">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="cidadeAlternativa">Cidade: </label>
+                                    <input class="form-control" type="text" id="cidadeAlternativa">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="emailAlternativo">Email: </label>
+                                    <input class="form-control" type="email" id="emailAlternativo">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="telefoneAlternativo">Telefone: </label>
+                                    <input class="form-control" type="tel" id="telefoneAlternativo">
+                                </div>
                             </div>
                             <div class="row my-5">
                                 <div class="col">
-                                    Cancelar
+                                    <a class="btn btn-danger" href="?pagina=carrinho">Cancelar</a>
                                 </div>
                                 <div class="col text-end">
-                                    escolher método de pagamento
+                                    <a class="btn btn-primary" href="?pagina=escolher_forma_pagamento" onclick="alternativeData()">Escolher método de pagamento</a>
                                 </div>
                             </div>
                         </div>

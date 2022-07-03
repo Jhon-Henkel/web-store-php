@@ -17,11 +17,26 @@ function confirmExcludeCartOff() {
     elementExclude.style.display = "none";
 }
 
-function alterarEndereco() {
+function showAlterarEndereco() {
     var endereco = document.getElementById("alterarEndereco");
     if (endereco.checked === true) {
         document.getElementById("novoEndereco").style.display = 'block';
     } else {
         document.getElementById("novoEndereco").style.display = 'none';
     }
+}
+
+function alternativeData() {
+    axios({
+        method: 'post',
+        url: '?pagina=dados_alternativos',
+        data: {
+            endereco: document.getElementById('enderecoAlternativo').value,
+            cidade: document.getElementById('cidadeAlternativa').value,
+            telefone: document.getElementById('telefoneAlternativo').value,
+            email: document.getElementById('emailAlternativo').value
+        }
+    }).then(function (response) {
+
+    });
 }
