@@ -95,6 +95,7 @@ class Cart
                 $totalPrice += $item['price'];
             }
 
+            $_SESSION['totalCart'] = $totalPrice;
             $data['total'] = $totalPrice;
             $data = ['cart' => $data];
         }
@@ -195,17 +196,23 @@ class Cart
         ], $data);
     }
 
-    public function payForm()
+    public function confirmOrder()
     {
-        echo 'payForm';
-//        $_SESSION['dados_alternativos'] = [
-//            'endereco'  => '',
-//            'cidade'    => '',
-//            'email'     => '',
-//            'telefone'  => '',
-//        ];
+        $cdOrder = $_SESSION['orderCode'];
+        $totalOrder = $_SESSION['totalCart'];
 
-        d($_SESSION);
+        $data = [
+            'cdOrder'    => $cdOrder,
+            'totalOrder' => $totalOrder,
+        ];
+
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'confirmar_pedido.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ], $data);
     }
 
     public function alternativeData()

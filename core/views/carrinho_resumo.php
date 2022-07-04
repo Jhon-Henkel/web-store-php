@@ -25,10 +25,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php
-                                    $index = 0;
-                                    $totalRows = count($data['cart']);
-                                    ?>
                                     <?php foreach ($data['cart'] as $product): ?>
                                         <tr>
                                             <td class="align-middle"><h6><?= $product['title'] ?></h6></td>
@@ -65,7 +61,7 @@
                             <h5 class="bg-dark text-white p-2">Dados para pagamento</h5>
                             <div class="row">
                                 <div class="col">
-                                    <p>Pix: 3258741</p>
+                                    <p>Pix: <strong>3258741</strong></p>
                                     <p>Código do pedido: <strong><?= $_SESSION['orderCode'] ?></strong></p>
                                     <p>Total: <strong><?= 'R$' . number_format($data['total'], 2,',', ',') ?></strong></p>
                                 </div>
@@ -99,7 +95,7 @@
                                     <a class="btn btn-danger" href="?pagina=carrinho">Cancelar</a>
                                 </div>
                                 <div class="col text-end">
-                                    <a class="btn btn-primary" href="?pagina=escolher_forma_pagamento" onclick="alternativeData()">Finalizar Pedido</a>
+                                    <a class="btn btn-primary" href="?pagina=confirmar_pedido" onclick="alternativeData()">Finalizar Pedido</a>
                                 </div>
                             </div>
                         </div>
