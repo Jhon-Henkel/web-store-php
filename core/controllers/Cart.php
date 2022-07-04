@@ -198,6 +198,32 @@ class Cart
 
     public function confirmOrder()
     {
+        $ids = array();
+        foreach ($_SESSION['cart'] as $idProduto => $quantidade) {
+            $ids[] = $idProduto;
+        }
+        $ids = implode(',', $ids);
+        $produto = new Product();
+        $results = $produto->searchProductsIds($ids);
+
+        $strPdt = array();
+        foreach ($results as $result) {
+            $qtd = $_SESSION['cart'][$result->id_pdt];
+            $strPdt[] = $qtd . 'X ' . $result->nome_pdt . ' R$ ' . number_format($result->preco_pdt, 2, ',','.') . ' /unidade';
+        }
+
+        $mailData = [
+            'produtos'  => $strPdt,
+            'total'     => 'R$ ' . number_format($_SESSION['totalCart'], 2, ',', '.'),
+            'pagamento' => [
+                'pix'       => '123456789',
+                'orderCode' => $_SESSION['orderCode'],
+                'total'     => $_SESSION['totalCart']
+            ],
+        ];
+
+        d($mailData);
+
         $cdOrder = $_SESSION['orderCode'];
         $totalOrder = $_SESSION['totalCart'];
 
@@ -205,6 +231,12 @@ class Cart
             'cdOrder'    => $cdOrder,
             'totalOrder' => $totalOrder,
         ];
+
+//        unset($_SESSION['orderCode']);
+//        unset($_SESSION['cart']);
+//        unset($_SESSION['totalCart']);
+//        unset($_SESSION['totalCart']);
+//        unset($_SESSION['dados_alternativos']);
 
         Store::layout([
             'layouts/html_header.php',

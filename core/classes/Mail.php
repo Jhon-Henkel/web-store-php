@@ -60,4 +60,11 @@ class Mail
 
         return true;
     }
+
+    public function sendEmailOrderConfirmed($clientMail, $orderData)
+    {
+        $subject = APP_NAME . 'Confirmação de pedido ' . '';
+        $content = '';
+
+    }
 }
