@@ -2,6 +2,7 @@
 
 namespace core\controllers;
 
+use core\classes\Mail;
 use core\classes\Store;
 use core\models\Client;
 use core\models\Product;
@@ -196,6 +197,9 @@ class Cart
         ], $data);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function confirmOrder()
     {
         $ids = array();
@@ -222,7 +226,8 @@ class Cart
             ],
         ];
 
-        d($mailData);
+        $mail = new Mail();
+        $mail->sendEmailOrderConfirmed($_SESSION['email'], $mailData);
 
         $cdOrder = $_SESSION['orderCode'];
         $totalOrder = $_SESSION['totalCart'];
