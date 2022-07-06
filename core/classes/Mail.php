@@ -66,7 +66,7 @@ class Mail
      */
     public function sendEmailOrderConfirmed($clientMail, $orderData)
     {
-        $subject = APP_NAME . 'Confirmação de pedido ' . $orderData['pagamento']['orderCode'];
+        $subject = APP_NAME . ' Confirmação de pedido ' . $orderData['pagamento']['orderCode'];
         $content = '<p>Este e-mail serve para confirmar seu pedido</p>';
         $content .= '<p>Dados do pedido:</p>';
         $content .= '<ul>';
@@ -74,11 +74,11 @@ class Mail
             $content .= '<ul>' . $produto . '</ul>';
         }
         $content .= '</ul>';
-        $content .= '<p>Total: <strong>' . $orderData['pagamento']['total'] . '</strong></p>';
+        $content .= '<p>Total: <strong>' . $orderData['total'] . '</strong></p>';
         $content .= '<hr>';
         $content .= '<p>Dados de pagamento: <strong>' . $orderData['pagamento']['pix'] . '</strong></p>';
         $content .= '<p>Código do pedido: <strong>' . $orderData['pagamento']['orderCode'] . '</strong></p>';
-        $content .= '<p>Valor a pagar: <strong>' . $orderData['pagamento']['total'] . '</strong></p>';
+        $content .= '<p>Valor a pagar: <strong>' . $orderData['total'] . '</strong></p>';
         $content .= '<p>O seu pedido só será processado após a confirmação de pagamento.</p>';
         $content .= '<hr>';
 

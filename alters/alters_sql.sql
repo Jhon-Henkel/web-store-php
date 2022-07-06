@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS produtos (
 
 -- Insert de produtos teste --
 INSERT INTO produtos (id_pdt, categoria_pdt, nome_pdt, descricao_pdt, imagem_pdt, preco_pdt, qtd_pdt_estoque, status_pdt, created_at, updated_at, deleted_at) VALUES
-    (1, 'homem', 'Tshirt Vermelha', 'Ab laborum, commodi aspernatur, quas distinctio cum quae omnis autem ea, odit sint quisquam similique! Labore aliquam amet veniam ad fugiat optio.', 'tshirt_vermelha.png', 45.70, 100, 1, '2021-02-06 19:45:18', '2021-02-06 19:45:25', NULL),
+    (1, 'homem', 'Tshirt Vermelha', 'Ab laborum, commodi aspernatur, quas distinctio cum quae omnis autem ea, odit sint quisquam similique! Labore aliquam amet veniam ad fugiat optio.', 'tshirt_vermelha.png', 45.70, 0, 1, '2021-02-06 19:45:18', '2021-02-06 19:45:25', NULL),
     (2, 'homem', 'Tshirt Azul', 'Possimus iusto esse atque autem rem, porro officiis sapiente quos velit laboriosam id expedita odio obcaecati voluptate repudiandae dignissimos eveniet repellat blanditiis.', 'tshirt_azul.png', 55.25, 100, 1, '2021-02-06 19:45:19', '2021-02-06 19:45:25', NULL),
     (3, 'homem', 'Tshirt Verde', 'Nostrum quisquam dolorum dolor autem accusamus fugit nesciunt, atque et? Quis eum nemo quidem officia cum dolorem voluptates! Autem, earum. Similique, fugit.', 'tshirt_verde.png', 35.15, 100, 1, '2021-02-06 19:45:20', '2021-02-06 19:45:26', NULL),
     (4, 'homem', 'Tshirt Amarela', 'Molestiae quaerat distinctio, facere perferendis necessitatibus optio repellat alias commodi voluptatem velit corrupti natus exercitationem quos amet facilis sint nulla delectus.', 'tshirt_amarela.png', 32.00, 100, 1, '2021-02-06 19:45:20', '2021-02-06 19:45:27', NULL),
@@ -48,3 +48,32 @@ INSERT INTO produtos (id_pdt, categoria_pdt, nome_pdt, descricao_pdt, imagem_pdt
     (6, 'mulher', 'Vertido Azul', 'Provident ipsum earum magnam odit in, illum nostrum est illo pariatur molestias esse delectus aliquam ullam maxime mollitia tempore, sunt officia suscipit.', 'vestido_azul.png', 86.00, 100, 1, '2021-02-06 19:45:21', '2021-02-06 19:45:28', NULL),
     (7, 'mulher', 'Vestido Verde', 'Qui aliquid sed quisquam autem quas recusandae labore neque laudantium iusto modi repudiandae doloremque ipsam ad omnis inventore, cum ducimus praesentium. Consectetur!', 'vestido_verde.png', 48.85, 100, 1, '2021-02-06 19:45:22', '2021-02-06 19:45:28', NULL),
     (8, 'mulher', 'Vestido Amarelo', 'Aspernatur labore corporis modi quis temporibus eos hic? Sed fugiat, repudiandae distinctio, labore temporibus, non magni consectetur dolorum earum amet impedit nesciunt.', 'vestido_amarelo.png', 46.45, 100, 1, '2021-02-06 19:45:22', '2021-02-06 19:45:29', NULL);
+
+-- Criando tabela pedidos --
+CREATE TABLE IF NOT EXISTS pedidos (
+    id_pedido int(10) unsigned NOT NULL AUTO_INCREMENT,
+    id_cliente int(10) DEFAULT NULL,
+    endereco_entrega varchar(250) DEFAULT NULL,
+    data_pedido datetime DEFAULT NULL,
+    cidade_entrega varchar(250) DEFAULT NULL,
+    email_cliente varchar(250) DEFAULT NULL,
+    telefone_cliente varchar(250) DEFAULT NULL,
+    codido_pedido varchar(50) DEFAULT NULL,
+    status_pedido int(4) DEFAULT NULL,
+    observacoes varchar(250) DEFAULT NULL,
+    created_at datetime DEFAULT NULL,
+    updated_at datetime DEFAULT NULL,
+    deleted_at datetime DEFAULT NULL,
+    PRIMARY KEY (id_pedido)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Criando tabela pedidos_produtos --
+CREATE TABLE IF NOT EXISTS pedidos_produtos (
+    id_pedido_produto int(10) unsigned NOT NULL AUTO_INCREMENT,
+    id_pedido int(10) DEFAULT NULL,
+    nome_produto varchar(250) DEFAULT NULL,
+    valor_unitario decimal (6, 2) DEFAULT NULL,
+    quantidade int(10) DEFAULT NULL,
+    created_at datetime DEFAULT NULL,
+    PRIMARY KEY (id_pedido_produto)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

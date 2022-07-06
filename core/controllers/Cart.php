@@ -222,7 +222,6 @@ class Cart
             'pagamento' => [
                 'pix'       => '123456789',
                 'orderCode' => $_SESSION['orderCode'],
-                'total'     => $_SESSION['totalCart']
             ],
         ];
 
