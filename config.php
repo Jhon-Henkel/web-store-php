@@ -16,3 +16,11 @@ const EMAIL_HOST        = 'smtp-mail.outlook.com';
 const EMAIL_FROM        = 'phpstorejhon@outlook.com';
 const EMAIL_PASSWORD    = 'Jhonphpstore';
 const EMAIL_PORT        = 587;
+
+//Status pedido
+const ORDER_PENDENTE    = 0;
+const ORDER_PAGA        = 1;
+const ORDER_FATURADO    = 2;
+const ORDER_ENVIADA     = 3;
+const ORDER_ENTREGUE    = 4;
+const ORDER_CANCELADA   = 5;

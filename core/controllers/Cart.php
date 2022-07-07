@@ -226,7 +226,7 @@ class Cart
         ];
 
         $mail = new Mail();
-        $mail->sendEmailOrderConfirmed($_SESSION['email'], $mailData);
+//        $mail->sendEmailOrderConfirmed($_SESSION['email'], $mailData);
 
         $cdOrder = $_SESSION['orderCode'];
         $totalOrder = $_SESSION['totalCart'];
@@ -235,6 +235,55 @@ class Cart
             'cdOrder'    => $cdOrder,
             'totalOrder' => $totalOrder,
         ];
+
+        $order = new Orders();
+        $clientCtrl = new Client();
+        $clientData = $clientCtrl->searchClient($_SESSION['client']);
+
+        d($clientData);
+        d($_SESSION);
+
+        $endereco = array();
+        $client = array();
+
+        if (isset($_SESSION['dados_alternativos']['endereco']) && !empty($_SESSION['dados_alternativos']['endereco'])) {
+        $endereco['endereco'] = $_SESSION['dados_alternativos']['endereco'];
+        } else {
+            $endereco['endereco'] = $clientData->endereco_cliente;
+        }
+
+        if (isset($_SESSION['dados_alternativos']['cidade']) && !empty($_SESSION['dados_alternativos']['cidade'])) {
+            $endereco['cidade'] = $_SESSION['dados_alternativos']['cidade'];
+        } else {
+            $endereco['cidade'] = $clientData->cidade_cliente;
+        }
+
+        if (isset($_SESSION['dados_alternativos']['email']) && !empty($_SESSION['dados_alternativos']['email'])) {
+            $client['email'] = $_SESSION['dados_alternativos']['email'];
+        } else {
+            $client['email'] = $clientData->email_cliente;
+        }
+
+        if (isset($_SESSION['dados_alternativos']['telefone']) && !empty($_SESSION['dados_alternativos']['telefone'])) {
+            $client['telefone'] = $_SESSION['dados_alternativos']['telefone'];
+        } else {
+            $client['telefone'] = $clientData->telefone_cliente;
+        }
+
+        $orderData = [
+            'id_cliente'  => $_SESSION['client'],
+            'endereco'    => $endereco['endereco'],
+            'cidade'      => $endereco['cidade'],
+            'email'       => $client['email'],
+            'telefone'    => $client['telefone'],
+            'cod_pedido'  => $_SESSION['orderCode'],
+            'status'      => ORDER_PENDENTE,
+            'msg'         => ''
+        ];
+
+        d($orderData);
+
+        $order->saveOrder($orderData, '');
 
 //        unset($_SESSION['orderCode']);
 //        unset($_SESSION['cart']);
@@ -261,6 +310,5 @@ class Cart
             'email'     => $data['email'],
             'telefone'  => $data['telefone']
         ];
-        d($data);
     }
 }
