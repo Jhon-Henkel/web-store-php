@@ -208,12 +208,12 @@ class Cart
         }
         $ids = implode(',', $ids);
         $produto = new Product();
-        $results = $produto->searchProductsIds($ids);
+        $products = $produto->searchProductsIds($ids);
 
         $strPdt = array();
-        foreach ($results as $result) {
-            $qtd = $_SESSION['cart'][$result->id_pdt];
-            $strPdt[] = $qtd . 'X ' . $result->nome_pdt . ' R$ ' . number_format($result->preco_pdt, 2, ',','.') . ' /unidade';
+        foreach ($products as $product) {
+            $qtd = $_SESSION['cart'][$product->id_pdt];
+            $strPdt[] = $qtd . 'X ' . $product->nome_pdt . ' R$ ' . number_format($product->preco_pdt, 2, ',','.') . ' /unidade';
         }
 
         $mailData = [
@@ -239,9 +239,6 @@ class Cart
         $order = new Orders();
         $clientCtrl = new Client();
         $clientData = $clientCtrl->searchClient($_SESSION['client']);
-
-        d($clientData);
-        d($_SESSION);
 
         $endereco = array();
         $client = array();
@@ -281,9 +278,17 @@ class Cart
             'msg'         => ''
         ];
 
-        d($orderData);
+        $productsData = array();
 
-        $order->saveOrder($orderData, '');
+        foreach ($products as $product) {
+            $productsData[] = [
+                'nome'          => $product->nome_pdt,
+                'valorUnd'      => $product->preco_pdt,
+                'quantidade'    => $_SESSION['cart'][$product->id_pdt]
+            ];
+        }
+
+        $order->saveOrder($orderData, $productsData);
 
 //        unset($_SESSION['orderCode']);
 //        unset($_SESSION['cart']);
