@@ -3,9 +3,13 @@
 namespace core\controllers;
 
 use core\classes\Database;
+use Exception;
 
 class Orders
 {
+    /**
+     * @throws Exception
+     */
     public function saveOrder($orderData, $productsData)
     {
         $db = new Database();

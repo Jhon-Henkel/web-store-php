@@ -6,6 +6,7 @@ use core\classes\Mail;
 use core\classes\Store;
 use core\models\Client;
 use core\models\Product;
+use Exception;
 
 class Cart
 {
@@ -133,6 +134,12 @@ class Cart
     {
         if (!Store::isClientLogged()) {
             Store::redirect('inicio');
+            return;
+        }
+
+        if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
+            Store::redirect('inicio');
+            return;
         }
 
         $ids = array();
@@ -198,10 +205,20 @@ class Cart
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function confirmOrder()
     {
+        if (!Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
+            Store::redirect('inicio');
+            return;
+        }
+
         $ids = array();
         foreach ($_SESSION['cart'] as $idProduto => $quantidade) {
             $ids[] = $idProduto;
@@ -226,7 +243,7 @@ class Cart
         ];
 
         $mail = new Mail();
-//        $mail->sendEmailOrderConfirmed($_SESSION['email'], $mailData);
+        $mail->sendEmailOrderConfirmed($_SESSION['email'], $mailData);
 
         $cdOrder = $_SESSION['orderCode'];
         $totalOrder = $_SESSION['totalCart'];
@@ -290,11 +307,10 @@ class Cart
 
         $order->saveOrder($orderData, $productsData);
 
-//        unset($_SESSION['orderCode']);
-//        unset($_SESSION['cart']);
-//        unset($_SESSION['totalCart']);
-//        unset($_SESSION['totalCart']);
-//        unset($_SESSION['dados_alternativos']);
+        unset($_SESSION['orderCode']);
+        unset($_SESSION['cart']);
+        unset($_SESSION['totalCart']);
+        unset($_SESSION['dados_alternativos']);
 
         Store::layout([
             'layouts/html_header.php',
