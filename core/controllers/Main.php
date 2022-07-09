@@ -217,4 +217,39 @@ class Main
 
         Store::redirect('inicio');
     }
+
+    public function perfil()
+    {
+        if (!Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        $client = new Client();
+
+        $dtemp = $client->searchClient($_SESSION['client']);
+
+        $data = [
+            'clientData'  => [
+                'Email'     => $dtemp->email_cliente,
+                'Nome'      => $dtemp->nome_cliente,
+                'Endereço'  => $dtemp->endereco_cliente,
+                'Cidade'    => $dtemp->cidade_cliente,
+                'Telefone'  => $dtemp->telefone_cliente,
+            ]
+        ];
+
+//        $data = [
+//            'clientData'   => $client->searchClient($_SESSION['client']),
+//        ];
+
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'client_perfil_nav.php',
+            'client_perfil.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ], $data);
+    }
 }

@@ -23,6 +23,9 @@ $rotas = array(
     'finalizar_pedido_resumo'  => 'cart@finishOrderResume',
     'dados_alternativos'       => 'cart@alternativeData',
     'confirmar_pedido'         => 'cart@confirmOrder',
+
+    //area do cliente
+    'perfil'                   => 'main@perfil'
 );
 
 //define a ação caso a rota não esteja mapeada em rodas

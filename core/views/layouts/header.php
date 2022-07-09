@@ -22,9 +22,9 @@ if (isset($_SESSION['cart'])) {
 
             <!--verifica se existe cliente na sessão-->
             <?php if (store::isClientLogged()): ?>
-                <i class="fa-solid fa-house-chimney-user text-white"></i>
-                <?= $_SESSION['clientName'] ?>
-
+                <a href="?pagina=perfil" class="nav-item">
+                    <i class="fa-solid fa-house-chimney-user text-white"></i> <?= $_SESSION['clientName'] ?>
+                </a>
                 <a href="?pagina=logout" class="nav-item">
                     <i class="fa-solid fa-arrow-right-from-bracket text-white"></i>
                 </a>
