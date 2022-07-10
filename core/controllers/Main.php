@@ -7,6 +7,7 @@ use core\classes\Mail;
 use core\classes\Store;
 use core\models\Client;
 use core\models\Product;
+use Exception;
 
 class Main
 {
@@ -56,7 +57,7 @@ class Main
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function registerClient()
     {
@@ -239,17 +240,59 @@ class Main
             ]
         ];
 
-//        $data = [
-//            'clientData'   => $client->searchClient($_SESSION['client']),
-//        ];
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'cliente_perfil_nav.php',
+            'cliente_perfil.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function alterPersonalData()
+    {
+        if (!Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        $client = new Client();
+
+        $data = [
+            'personalData' => $client->searchClient($_SESSION['client']),
+        ];
 
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
-            'client_perfil_nav.php',
-            'client_perfil.php',
+            'cliente_perfil_nav.php',
+            'cliente_alterar_dados_pessoais.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
         ], $data);
+    }
+
+    public function alterPersonalDataSubmit()
+    {
+        echo 'alterPersonalDataSubmit';
+    }
+
+    public function alterPassword()
+    {
+        echo 'alterPassword';
+    }
+
+    public function alterPasswordSubmit()
+    {
+        echo 'alterPasswordSubmit';
+    }
+
+    public function orderHistory()
+    {
+        echo 'orderHistory';
     }
 }

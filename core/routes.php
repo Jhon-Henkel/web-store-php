@@ -1,8 +1,8 @@
 <?php
 
 $rotas = array(
-    'inicio'            => 'main@index',
-    'loja'              => 'main@store',
+    'inicio' => 'main@index',
+    'loja'   => 'main@store',
 
     //cliente
     'cliente_cadastro'  => 'main@registerClientForm',
@@ -25,7 +25,12 @@ $rotas = array(
     'confirmar_pedido'         => 'cart@confirmOrder',
 
     //area do cliente
-    'perfil'                   => 'main@perfil'
+    'perfil'                        => 'main@perfil',
+    'alterar_dados_pessoais'        => 'main@alterPersonalData',
+    'alterar_dados_pessoais_submit' => 'main@alterPersonalDataSubmit',
+    'alterar_senha'                 => 'main@alterPassword',
+    'alterar_senhaSubmit'           => 'main@alterPasswordSubmit',
+    'historico_pedidos'             => 'main@orderHistory'
 );
 
 //define a ação caso a rota não esteja mapeada em rodas
