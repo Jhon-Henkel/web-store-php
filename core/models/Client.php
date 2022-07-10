@@ -121,4 +121,48 @@ class Client
         $results = $db->select('SELECT email_cliente, nome_cliente, endereco_cliente, cidade_cliente, telefone_cliente FROM clientes WHERE id_cliente = :id_client', $params);
         return $results[0];
     }
+
+    public function validateEmailNotInUse($email)
+    {
+        $db = new  Database();
+        $id = $_SESSION['client'];
+
+        $params = [
+            ':email' => $email,
+            'id' => $id
+        ];
+
+        $results = $db->select('SELECT id_cliente FROM clientes WHERE id_cliente <> :id AND email_cliente = :email', $params);
+
+        if (count($results) != 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function updateClient($email, $nome, $endereco, $cidade, $telefone)
+    {
+        $db = new Database();
+
+        $params = [
+            ':email'    => $email,
+            ':nome'     => $nome,
+            ':endereco' => $endereco,
+            ':cidade'   => $cidade,
+            ':telefone' => $telefone,
+            ':id'       => $_SESSION['client']
+        ];
+
+        $db->update('
+            UPDATE clientes SET 
+                email_cliente = :email,
+                nome_cliente = :nome,
+                endereco_cliente = :endereco,
+                cidade_cliente = :cidade,
+                telefone_cliente = :telefone,
+                data_modificacao = NOW()
+            WHERE id_cliente = :id
+        ', $params);
+    }
 }

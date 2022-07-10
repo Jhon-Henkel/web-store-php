@@ -294,10 +294,27 @@ class Main
         $cidade = trim($_POST['cidade']);
         $telefone = trim($_POST['telefone']);
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email)) {
             $_SESSION['error'] = 'E-mail inválido!';
             $this->alterPersonalData();
         }
+
+        if (empty($nome) || empty($endereco) || empty($cidade)) {
+            $_SESSION['error'] = 'Preencha os dados corretamente!';
+            $this->alterPersonalData();
+        }
+
+        $client = new Client();
+        $result = $client->validateEmailNotInUse($email);
+
+        if ($result) {
+            $_SESSION['error'] = 'E-mail já cadastrado!';
+            $this->alterPersonalData();
+        }
+
+        $client->updateClient($email, $nome, $endereco, $cidade, $telefone);
+
+        Store::redirect('perfil');
 
     }
 
