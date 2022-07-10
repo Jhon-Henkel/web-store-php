@@ -17,6 +17,10 @@ const EMAIL_FROM        = 'phpstorejhon@outlook.com';
 const EMAIL_PASSWORD    = 'Jhonphpstore';
 const EMAIL_PORT        = 587;
 
+//AES encrypt
+const AES_KEY           = 'GAynLeXnL3sR8sCAcnQ7qx5D4oCqyDbo';
+const AES_IV            = '3MRBpL39Lt59ptCH';
+
 //Status pedido
 const ORDER_PENDENTE    = 0;
 const ORDER_PAGA        = 1;

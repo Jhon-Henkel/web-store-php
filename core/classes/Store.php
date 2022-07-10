@@ -45,4 +45,14 @@ class Store
         $cod .= rand(100000, 9999999);
         return $cod;
     }
+
+    public static function strEncryptAes($str): string
+    {
+        return bin2hex(openssl_encrypt($str, 'aes-256-cbc', AES_KEY, OPENSSL_RAW_DATA, AES_IV));
+    }
+
+    public static function strDecryptAes($str): string
+    {
+        return openssl_decrypt(hex2bin($str), 'aes-256-cbc', AES_KEY, OPENSSL_RAW_DATA, AES_IV);
+    }
 }

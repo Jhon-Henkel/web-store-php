@@ -62,4 +62,16 @@ class Orders
             )', $params);
         }
     }
+
+    public function searchOrders($idClient)
+    {
+        $params = [
+            ':id' => $idClient
+        ];
+
+        $db = new Database();
+        $results = $db->select('SELECT * FROM pedidos WHERE id_cliente = :id ORDER BY data_pedido DESC', $params);
+
+        return $results;
+    }
 }

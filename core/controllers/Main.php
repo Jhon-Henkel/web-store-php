@@ -2,7 +2,6 @@
 
 namespace core\controllers;
 
-use core\classes\Database;
 use core\classes\Mail;
 use core\classes\Store;
 use core\models\Client;
@@ -380,8 +379,35 @@ class Main
         Store::redirect('perfil');
     }
 
+    /**
+     * @throws Exception
+     */
     public function orderHistory()
     {
-        echo 'orderHistory';
+        if (!Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        $orders = new Orders();
+        $historyOrders = $orders->searchOrders($_SESSION['client']);
+
+        $data = [
+            'historyOrder' => $historyOrders,
+        ];
+
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'cliente_perfil_nav.php',
+            'cliente_historico_pedidos.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ], $data);
+    }
+
+    public function orderDetails()
+    {
+        echo $_GET['id'];
     }
 }

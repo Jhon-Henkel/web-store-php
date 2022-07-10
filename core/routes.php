@@ -29,8 +29,11 @@ $rotas = array(
     'alterar_dados_pessoais'        => 'main@alterPersonalData',
     'alterar_dados_pessoais_submit' => 'main@alterPersonalDataSubmit',
     'alterar_senha'                 => 'main@alterPassword',
-    'alterar_senha_submit'           => 'main@alterPasswordSubmit',
-    'historico_pedidos'             => 'main@orderHistory'
+    'alterar_senha_submit'          => 'main@alterPasswordSubmit',
+
+    //pedidos
+    'historico_pedidos'     => 'main@orderHistory',
+    'detalhes_pedido'       => 'main@orderDetails',
 );
 
 //define a ação caso a rota não esteja mapeada em rodas
