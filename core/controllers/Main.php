@@ -278,7 +278,27 @@ class Main
 
     public function alterPersonalDataSubmit()
     {
-        echo 'alterPersonalDataSubmit';
+        if (!Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            Store::redirect('inicio');
+            return;
+        }
+
+        $email = trim(strtolower($_POST['email']));
+        $nome = trim($_POST['nome']);
+        $endereco = trim($_POST['endereco']);
+        $cidade = trim($_POST['cidade']);
+        $telefone = trim($_POST['telefone']);
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['error'] = 'E-mail inválido!';
+            $this->alterPersonalData();
+        }
+
     }
 
     public function alterPassword()
