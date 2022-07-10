@@ -314,18 +314,70 @@ class Main
 
         $client->updateClient($email, $nome, $endereco, $cidade, $telefone);
 
+        $_SESSION['email']      = $email;
+        $_SESSION['clientName'] = $nome;
+
         Store::redirect('perfil');
 
     }
 
     public function alterPassword()
     {
-        echo 'alterPassword';
+        if (!Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'cliente_perfil_nav.php',
+            'cliente_alterar_senha.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ]);
     }
 
     public function alterPasswordSubmit()
     {
-        echo 'alterPasswordSubmit';
+        if (!Store::isClientLogged()) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            Store::redirect('inicio');
+            return;
+        }
+
+        $atualPass = trim($_POST['senhaAtual']);
+        $newPass1 = trim($_POST['senhaNova1']);
+        $newPass2 = trim($_POST['senhaNova2']);
+
+        if (strlen($newPass1) < 8) {
+            $_SESSION['error'] = 'A senha deve conter no mínimo 8 caracteres!';
+            $this->alterPassword();
+            return;
+        }
+
+        $client = new Client();
+        $pass = $client->validatePassword($atualPass);
+
+        if (!$pass) {
+            $_SESSION['error'] = 'A senha atual está errada!';
+            $this->alterPassword();
+            return;
+        }
+
+        if ($newPass1 != $newPass2) {
+            $_SESSION['error'] = 'A senha mova inserida não bate com a confirmação!';
+            $this->alterPassword();
+            return;
+        }
+
+        $client->updatePass($newPass1);
+
+        Store::redirect('perfil');
     }
 
     public function orderHistory()

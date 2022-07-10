@@ -29,7 +29,7 @@ $rotas = array(
     'alterar_dados_pessoais'        => 'main@alterPersonalData',
     'alterar_dados_pessoais_submit' => 'main@alterPersonalDataSubmit',
     'alterar_senha'                 => 'main@alterPassword',
-    'alterar_senhaSubmit'           => 'main@alterPasswordSubmit',
+    'alterar_senha_submit'           => 'main@alterPasswordSubmit',
     'historico_pedidos'             => 'main@orderHistory'
 );
 

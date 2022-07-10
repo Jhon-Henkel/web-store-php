@@ -165,4 +165,26 @@ class Client
             WHERE id_cliente = :id
         ', $params);
     }
+
+    public function validatePassword($pass): bool
+    {
+        $params = [
+            ':id' => $_SESSION['client']
+        ];
+
+        $db = new Database();
+        $passDb = $db->select('SELECT senha_cliente FROM clientes WHERE id_cliente = :id', $params)[0]->senha_cliente;
+
+        return password_verify($pass, $passDb);
+    }
+
+    public function updatePass($newPass)
+    {
+        $db = new Database();
+        $params = [
+            ':id' => $_SESSION['client'],
+            ':pass' => password_hash($newPass, PASSWORD_BCRYPT)
+        ];
+        $db->update('UPDATE clientes SET senha_cliente = :pass, data_modificacao = NOW() WHERE id_cliente = :id', $params);
+    }
 }
