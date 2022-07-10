@@ -43,9 +43,7 @@ $action = 'inicio';
 if (isset($_GET['pagina'])) {
 
     //verifica se ação existe nas rotas
-    if(!key_exists($_GET['pagina'], $rotas)) {
-        $action = 'inicio';
-    } else {
+    if(key_exists($_GET['pagina'], $rotas)) {
         $action = $_GET['pagina'];
     }
 }

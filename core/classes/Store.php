@@ -21,13 +21,12 @@ class Store
         }
     }
 
-    public static function isClientLogged()
+    public static function isClientLogged(): bool
     {
-        //verifica se existe um cliente com sessão
         return isset($_SESSION['client']);
     }
 
-    public static function generateMd5UniqId()
+    public static function generateMd5UniqId(): string
     {
         return md5(uniqid());
     }

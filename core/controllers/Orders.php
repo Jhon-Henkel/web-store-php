@@ -63,15 +63,13 @@ class Orders
         }
     }
 
-    public function searchOrders($idClient)
+    public function searchOrders($idClient): array
     {
         $params = [
             ':id' => $idClient
         ];
 
         $db = new Database();
-        $results = $db->select('SELECT * FROM pedidos WHERE id_cliente = :id ORDER BY data_pedido DESC', $params);
-
-        return $results;
+        return $db->select('SELECT * FROM pedidos WHERE id_cliente = :id ORDER BY data_pedido DESC', $params);
     }
 }
