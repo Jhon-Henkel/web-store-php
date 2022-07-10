@@ -24,7 +24,7 @@
                                 <td class="text-center"><?= $order->codido_pedido ?></td>
                                 <td class="text-center"><?= $order->status_pedido ?></td>
                                 <td>
-                                    <a href="?pagina=detalhes_pedido&id=<?= \core\classes\Store::strEncryptAes($order->id_pedido) ?>">Detalhes</a>
+                                    <a href="?pagina=detalhes_pedido&id=<?= \core\classes\Store::strEncryptAes($order->id_pedido) ?>"><i class="fa-solid fa-circle-info"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
