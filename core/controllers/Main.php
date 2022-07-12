@@ -408,6 +408,45 @@ class Main
 
     public function orderDetails()
     {
-        echo $_GET['id'];
+        if (
+            !Store::isClientLogged() || !isset($_GET['id']) || strlen($_GET['id']) != 32) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        $orderId = Store::strDecryptAes($_GET['id']);
+
+        if (empty($orderId)) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        $orders = new Orders();
+        $order = $orders->searchOrderByClientById($_SESSION['client'], $orderId);
+
+        if (!$order) {
+            Store::redirect('inicio');
+            return;
+        }
+
+        $total = null;
+        foreach ($order['itens'] as $product) {
+            $total += $product->quantidade * $product->valor_unitario;
+        }
+
+        $data = [
+            'order' => $order['order'],
+            'products' => $order['itens'],
+            'total' => $total,
+        ];
+
+        Store::layout([
+            'layouts/html_header.php',
+            'layouts/header.php',
+            'cliente_perfil_nav.php',
+            'cliente_detalhe_pedido.php',
+            'layouts/footer.php',
+            'layouts/html_footer.html'
+        ], $data);
     }
 }

@@ -23,8 +23,8 @@ const AES_IV            = '3MRBpL39Lt59ptCH';
 
 //Status pedido
 const ORDER_PENDENTE    = 0;
-const ORDER_PAGA        = 1;
+const ORDER_PAGO        = 1;
 const ORDER_FATURADO    = 2;
-const ORDER_ENVIADA     = 3;
+const ORDER_ENVIADO     = 3;
 const ORDER_ENTREGUE    = 4;
-const ORDER_CANCELADA   = 5;
+const ORDER_CANCELADO   = 5;

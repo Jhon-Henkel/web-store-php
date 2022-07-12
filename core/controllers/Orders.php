@@ -4,6 +4,7 @@ namespace core\controllers;
 
 use core\classes\Database;
 use Exception;
+use mysql_xdevapi\Result;
 
 class Orders
 {
@@ -71,5 +72,27 @@ class Orders
 
         $db = new Database();
         return $db->select('SELECT * FROM pedidos WHERE id_cliente = :id ORDER BY data_pedido DESC', $params);
+    }
+
+    public function searchOrderByClientById($clientId, $orderId)
+    {
+        $params = [
+            ':idClient' => $clientId,
+            ':idOrder'  => $orderId
+        ];
+
+        $db = new Database();
+        $order = $db->select('SELECT * FROM pedidos WHERE id_pedido = :idOrder AND id_cliente = :idClient', $params);
+
+        if (count($order) == 1) {
+            $params = [':idOrder' => $orderId];
+            $itens = $db->select('SELECT * FROM pedidos_produtos WHERE id_pedido = :idOrder', $params);
+            return [
+                'order' => $order[0],
+                'itens' => $itens
+            ];
+        }
+
+        return null;
     }
 }
