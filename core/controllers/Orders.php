@@ -4,7 +4,6 @@ namespace core\controllers;
 
 use core\classes\Database;
 use Exception;
-use mysql_xdevapi\Result;
 
 class Orders
 {
@@ -64,6 +63,9 @@ class Orders
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function searchOrders($idClient): array
     {
         $params = [
@@ -74,6 +76,9 @@ class Orders
         return $db->select('SELECT * FROM pedidos WHERE id_cliente = :id ORDER BY data_pedido DESC', $params);
     }
 
+    /**
+     * @throws Exception
+     */
     public function searchOrderByClientById($clientId, $orderId)
     {
         $params = [
@@ -94,5 +99,33 @@ class Orders
         }
 
         return null;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function checkOrderStatus($codOrder) :array
+    {
+        $params = [
+            ':cod' => $codOrder,
+        ];
+
+        $db = new Database();
+        return $db->select('SELECT status_pedido FROM pedidos WHERE codido_pedido = :cod', $params);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function setStatusPaidOut($codOrder): bool
+    {
+        $params = [
+            ':cod' => $codOrder,
+        ];
+        $db = new Database();
+
+        $db->update("UPDATE pedidos SET status_pedido = '" . ORDER_PAGO . "', updated_at = NOW() WHERE codido_pedido = :cod", $params);
+
+        return true;
     }
 }

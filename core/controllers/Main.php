@@ -449,4 +449,31 @@ class Main
             'layouts/html_footer.html'
         ], $data);
     }
+
+    /**
+     * @throws Exception
+     */
+    public function payment()
+    {
+        // para testar basta fazer a rota abaixo pelo navegador
+        // http://localhost/Web-Store/public/index.php?pagina=pagamento&codOrder=FG5435612
+
+        $codOrder = '';
+
+        if (!isset($_GET['codOrder'])) {
+            return;
+        } else {
+            $codOrder = $_GET['codOrder'];
+        }
+
+        $orders = new Orders();
+        $results = $orders->checkOrderStatus($codOrder);
+
+        if ($results[0]->status_pedido == ORDER_PENDENTE) {
+            $orders->setStatusPaidOut($codOrder);
+            echo 'Pago';
+        }
+
+        echo 'Erro, pedido já pago ou inexistente';
+    }
 }

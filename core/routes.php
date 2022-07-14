@@ -34,6 +34,9 @@ $rotas = array(
     //pedidos
     'historico_pedidos'     => 'main@orderHistory',
     'detalhes_pedido'       => 'main@orderDetails',
+
+    //pagammentos
+    'pagamento'             => 'main@payment'
 );
 
 //define a ação caso a rota não esteja mapeada em rodas
