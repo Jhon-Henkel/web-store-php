@@ -469,6 +469,7 @@ class Main
         $orders = new Orders();
         $results = $orders->checkOrderStatus($codOrder);
 
+        //TODO criar envio de email após trocar o status
         if ($results[0]->status_pedido == ORDER_PENDENTE) {
             $orders->setStatusPaidOut($codOrder);
             echo 'Pago';
