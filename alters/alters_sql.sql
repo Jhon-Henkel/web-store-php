@@ -77,3 +77,15 @@ CREATE TABLE IF NOT EXISTS pedidos_produtos (
     created_at datetime DEFAULT NULL,
     PRIMARY KEY (id_pedido_produto)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Criando tabela admin_login --
+CREATE TABLE IF NOT EXISTS admin_login (
+    id_admin int(10) auto_increment NOT NULL,
+    usuario_admin varchar(100) NULL,
+    senha_admin varchar(100) NULL,
+    created_at DATETIME NULL,
+    updated_at DATETIME NULL,
+    deleted_at DATETIME NULL,
+    PRIMARY KEY (id_admin)
+    )
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

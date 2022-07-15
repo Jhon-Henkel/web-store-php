@@ -1,7 +1,9 @@
 <?php
 
 $rotas = array(
-    'inicio' => 'admin@index',
+    'inicio'            => 'admin@index',
+    'admin-login'       => 'admin@adminLogin',
+    'admin-login-submit'=> 'admin@adminLoginSubmit',
 );
 
 //define a ação caso a rota não esteja mapeada em rodas

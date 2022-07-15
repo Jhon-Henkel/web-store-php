@@ -44,14 +44,23 @@ class Store
         return isset($_SESSION['client']);
     }
 
+    public static function isAdminLogged(): bool
+    {
+        return isset($_SESSION['admin']);
+    }
+
     public static function generateMd5UniqId(): string
     {
         return md5(uniqid());
     }
 
-    public static function redirect($route = '')
+    public static function redirect($route = '', $admin = false)
     {
-        header('location:' . BASE_URL . '?pagina=' . $route);
+        if (!$admin) {
+            header('location:' . BASE_URL . '?pagina=' . $route);
+        } else {
+            header('location:' . BASE_URL . 'admin/' . '?pagina=' . $route);
+        }
     }
 
     public static function generateOrderCode(): string
