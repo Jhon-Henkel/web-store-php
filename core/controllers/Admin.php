@@ -115,27 +115,27 @@ class Admin
             switch ($_GET['status']) {
                 case 'pendente':
                     $status = ORDER_PENDENTE;
-                    $statusName = $_GET['status'] . 's!';
+                    $statusName = $_GET['status'] . 's';
                     break;
                 case 'pago':
                     $status = ORDER_PAGO;
-                    $statusName = $_GET['status'] . 's!';
+                    $statusName = $_GET['status'] . 's';
                     break;
                 case 'faturado':
                     $status = ORDER_FATURADO;
-                    $statusName = $_GET['status'] . 's!';
+                    $statusName = $_GET['status'] . 's';
                     break;
                 case 'enviado':
                     $status = ORDER_ENVIADO;
-                    $statusName = $_GET['status'] . 's!';
+                    $statusName = $_GET['status'] . 's';
                     break;
                 case 'entregue':
                     $status = ORDER_ENTREGUE;
-                    $statusName = $_GET['status'] . 's!';
+                    $statusName = $_GET['status'] . 's';
                     break;
                 case 'cancelado':
                     $status = ORDER_CANCELADO;
-                    $statusName = $_GET['status'] . 's!';
+                    $statusName = $_GET['status'] . 's';
                     break;
                 default:
                     $status = '';
@@ -146,8 +146,6 @@ class Admin
 
         $admin = new AdminModel();
         $orders = $admin->listOrders($status);
-
-        d($orders);
 
         $data = [
             'orders' => $orders,

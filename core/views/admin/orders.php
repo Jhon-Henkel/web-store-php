@@ -5,13 +5,13 @@
         </div>
 
         <div class="col-md-9">
-            <h3>Pedidos</h3>
+            <h3>Pedidos <?= ucfirst($data['status']) ?></h3>
             <?php if (count($data['orders']) == 0): ?>
                 <hr>
-                <p class="text-center">Não existem pedidos <?= $data['status'] ?></p>
+                <p class="text-center">Não existem pedidos <?= $data['status'] ?>!</p>
             <?php else: ?>
-                <table class="table">
-                    <thead>
+                <table class="table table-striped" id="ordersTable">
+                    <thead class="table-primary">
                         <tr>
                             <th>Data</th>
                             <th>Código</th>
@@ -40,3 +40,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready( function () {
+        $('#ordersTable').DataTable(
+            {
+                language: {
+                    decimal: ',',
+                    thousands: '.',
+                    search: 'Procurar',
+                    lengthMenu: 'Mostrar _MENU_ por página',
+                    info: 'Mostrando _PAGE_ de _PAGES_',
+                    infoEmpty: 'Sem resultados disponíveis',
+                    infoFiltered: '(filtrado de _MAX_ resultados totais)',
+                    zeroRecords: 'Nada para mostrar',
+                    paginate: {
+                        first: 'Primeira',
+                        last: 'Ultima',
+                        next: 'Próxima',
+                        previous: 'Anterior'
+                    },
+                },
+            }
+        );
+    } );
+</script>

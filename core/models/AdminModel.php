@@ -64,7 +64,7 @@ class AdminModel
     public function listOrders($status): ?array
     {
         $db = new Database();
-        $sql = 'SELECT * FROM pedidos p JOIN clientes c ON p.id_cliente = c.id_cliente';
+        $sql = 'SELECT * FROM pedidos p LEFT JOIN clientes c ON p.id_cliente = c.id_cliente';
 
         if ($status != '') {
             $sql .=' WHERE p.status_pedido = ' . $status;
