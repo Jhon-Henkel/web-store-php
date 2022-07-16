@@ -45,6 +45,7 @@
                 <table class="table table-striped table-sm" id="ordersTable">
                     <thead class="table-primary">
                         <tr>
+                            <th class="col-1 text-center">Detalhes</th>
                             <th>Data</th>
                             <th>Código</th>
                             <th>Cliente</th>
@@ -57,6 +58,11 @@
                     <tbody>
                         <?php foreach ($data['orders'] as $order): ?>
                             <tr>
+                                <td class="col-1 text-center">
+                                    <a href="?pagina=detalhes-pedido&id=<?= $order->id_pedido ?>">
+                                        <i class="fa-solid fa-circle-info me-2"></i>
+                                    </a>
+                                </td>
                                 <td><?= $order->data_pedido ?></td>
                                 <td><?= $order->codido_pedido ?></td>
                                 <td><?= $order->nome_cliente ?></td>

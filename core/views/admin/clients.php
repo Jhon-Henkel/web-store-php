@@ -18,9 +18,10 @@
                     <thead class="table-primary">
                         <tr>
                             <th class="col-1 text-center">Detalhes</th>
-                            <th>Cliente</th>
-                            <th>E-mail</th>
-                            <th>Telefone</th>
+                            <th class="text-center">Cliente</th>
+                            <th class="text-center">Pedidos</th>
+                            <th class="text-center">E-mail</th>
+                            <th class="text-center">Telefone</th>
                             <th class="text-center">Ativo</th>
                         </tr>
                     </thead>
@@ -32,9 +33,17 @@
                                         <i class="fa-solid fa-circle-info me-2"></i>
                                     </a>
                                 </td>
-                                <td><?= $cliente->nome_cliente ?></td>
-                                <td><?= $cliente->email_cliente ?></td>
-                                <td><?= $cliente->telefone_cliente ?></td>
+                                <td class="text-center"><?= $cliente->nome_cliente ?></td>
+                                <td class="text-center">
+                                    <?php if ($cliente->totalPedidos != 0): ?>
+                                        <a href="?pagina=pedidos-do-cliente&id=<?= $cliente->id_cliente ?>">
+                                            <i class="fa-solid fa-eye ms-2 me-2"></i>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?= $cliente->totalPedidos ?>
+                                </td>
+                                <td class="text-center"><?= $cliente->email_cliente ?></td>
+                                <td class="text-center"><?= empty($cliente->telefone_cliente) ? 'Não cadastrado' : $cliente->telefone_cliente ?></td>
                                 <td class="text-center">
                                     <?php if ($cliente->status_cliente == 1): ?>
                                         <i class="fa-solid fa-circle-check text-success"></i>

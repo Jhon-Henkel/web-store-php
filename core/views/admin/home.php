@@ -5,16 +5,16 @@
         </div>
 
         <div class="col-md-11">
-            <h4>Pedidos Pendentes</h4>
+            <h4 class="col-5">Pedidos Pendentes</h4>
             <?php if ($data['totalPendingOrders'] == 0): ?>
-                <div class="alert alert-danger p-2 text-center">
+                <div class="alert alert-danger p-2 text-center col-5">
                     <span class="me-3">
                         <i class="fa-solid fa-circle-info me-2"></i>
                         Não existem pedidos pendentes
                     </span>
                 </div>
             <?php else: ?>
-                <div class="alert alert-info p-2 text-center">
+                <div class="alert alert-info p-2 text-center col-5">
                     <span class="me-3">
                         <i class="fa-solid fa-circle-info me-2"></i>
                         Existem
@@ -27,16 +27,16 @@
                 </div>
             <?php endif; ?>
             <hr>
-            <h4>Pedidos Pagos</h4>
+            <h4 class="col-5">Pedidos Pagos</h4>
             <?php if ($data['totalPaidOrders'] == 0): ?>
-                <div class="alert alert-danger p-2 text-center">
+                <div class="alert alert-danger p-2 text-center col-5">
                     <span class="me-3">
                         <i class="fa-solid fa-circle-info me-2"></i>
                         Não existem pedidos pagos
                     </span>
                 </div>
             <?php else: ?>
-                <div class="alert alert-info p-2 text-center">
+                <div class="alert alert-info p-2 text-center col-5">
                     <span class="me-3">
                         <i class="fa-solid fa-circle-info me-2"></i>
                         Existem

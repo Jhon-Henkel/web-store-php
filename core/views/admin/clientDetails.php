@@ -37,6 +37,18 @@
                     <?php endif;?>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <?php if ($data['totalPedidos'] == 0): ?>
+                        <div class="alert alert-danger text-center mt-5">
+                            <i class="fa-solid fa-circle-xmark text-danger"></i>
+                            Não existem pedidos para esse cliente!
+                        </div>
+                    <?php else: ?>
+                        <a href="?pagina=pedidos-do-cliente&id=<?= $data['cliente']->id_cliente ?>" class="btn btn-primary btn-sm mt-2">Ver pedidos</a>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>

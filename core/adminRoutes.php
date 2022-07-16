@@ -10,9 +10,11 @@ $rotas = array(
     //clientes
     'clientes'          => 'admin@clientsList',
     'detalhes-cliente'  => 'admin@clientDetails',
+    'pedidos-do-cliente'=> 'admin@clientOrderHistory',
 
     //pedidos
     'pedidos'           => 'admin@ordersList',
+    'detalhes-pedido'   => 'admin@orderDetails',
 
 );
 

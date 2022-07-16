@@ -212,15 +212,85 @@ class Admin
         $admin = new AdminModel();
 
         $data = [
-            'cliente'   => $admin->searchClientById($clientId)[0],
+            'cliente'       => $admin->searchClientById($clientId)[0],
+            'totalPedidos'  => $admin->countOrdersByClientId($clientId)
         ];
-
-        d($data);
 
         Store::layoutAdmin([
             'admin/layouts/html_header.php',
             'admin/layouts/header.php',
             'admin/clientDetails.php',
+            'admin/layouts/footer.php',
+            'admin/layouts/html_footer.html'
+        ], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function clientOrderHistory()
+    {
+        if (!Store::isAdminLogged()) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
+        if (!isset($_GET['id'])) {
+            Store::redirect('clientes', true);
+            return;
+        }
+
+        $clientId = $_GET['id'];
+
+        $admin = new AdminModel();
+        $orders = $admin->getOrdersByClientId($clientId);
+        $client = $admin->searchClientById($clientId)[0];
+
+        $data = [
+            'orders'    => $orders,
+            'cliente'   => $client,
+        ];
+
+        Store::layoutAdmin([
+            'admin/layouts/html_header.php',
+            'admin/layouts/header.php',
+            'admin/clientOrdersHistory.php',
+            'admin/layouts/footer.php',
+            'admin/layouts/html_footer.html'
+        ], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function orderDetails()
+    {if (!Store::isAdminLogged()) {
+        Store::redirect('inicio', true);
+        return;
+    }
+
+        if (!isset($_GET['id'])) {
+            Store::redirect('pedidos', true);
+            return;
+        }
+
+        $orderId = $_GET['id'];
+
+        $admin = new AdminModel();
+        $order = $admin->getOrdersByOrderId($orderId);
+        $client = $admin->searchClientById($order[0]->id_cliente);
+        $products = $admin->getProductsInOrderByOrderId($orderId);
+
+        $data = [
+            'order'    => $order[0],
+            'client'   => $client[0],
+            'products' => $products,
+        ];
+
+        Store::layoutAdmin([
+            'admin/layouts/html_header.php',
+            'admin/layouts/header.php',
+            'admin/orderDetails.php',
             'admin/layouts/footer.php',
             'admin/layouts/html_footer.html'
         ], $data);
