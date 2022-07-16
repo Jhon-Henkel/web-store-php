@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row mt-3">
-        <div class="col-md-3">
+        <div class="col-md-1">
             <?php include __DIR__ . '/layouts/admin-menu.php' ?>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-11">
             <h4>Pedidos Pendentes</h4>
             <?php if ($data['totalPendingOrders'] == 0): ?>
                 <div class="alert alert-danger p-2 text-center">

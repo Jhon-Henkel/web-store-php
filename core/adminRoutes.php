@@ -8,10 +8,11 @@ $rotas = array(
     'admin-logout'      => 'admin@logout',
 
     //clientes
-    'clientes'          => 'admin@clients',
+    'clientes'          => 'admin@clientsList',
+    'detalhes-cliente'  => 'admin@clientDetails',
 
     //pedidos
-    'pedidos'           => 'admin@orders',
+    'pedidos'           => 'admin@ordersList',
 
 );
 

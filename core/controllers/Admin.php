@@ -107,8 +107,13 @@ class Admin
     /**
      * @throws Exception
      */
-    public function orders()
+    public function ordersList()
     {
+        if (!Store::isAdminLogged()) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
         $status = '';
         $statusName = '';
         if (isset($_GET['status'])) {
@@ -156,6 +161,66 @@ class Admin
             'admin/layouts/html_header.php',
             'admin/layouts/header.php',
             'admin/orders.php',
+            'admin/layouts/footer.php',
+            'admin/layouts/html_footer.html'
+        ], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function clientsList()
+    {
+        if (!Store::isAdminLogged()) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
+        $admin = new AdminModel();
+        $clients = $admin->listAllClients();
+
+        $data = [
+            'clientes' => $clients,
+        ];
+
+        Store::layoutAdmin([
+            'admin/layouts/html_header.php',
+            'admin/layouts/header.php',
+            'admin/clients.php',
+            'admin/layouts/footer.php',
+            'admin/layouts/html_footer.html'
+        ], $data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function clientDetails()
+    {
+        if (!Store::isAdminLogged()) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
+        if (!isset($_GET['id'])) {
+            Store::redirect('clientes', true);
+            return;
+        }
+
+        $clientId = $_GET['id'];
+
+        $admin = new AdminModel();
+
+        $data = [
+            'cliente'   => $admin->searchClientById($clientId)[0],
+        ];
+
+        d($data);
+
+        Store::layoutAdmin([
+            'admin/layouts/html_header.php',
+            'admin/layouts/header.php',
+            'admin/clientDetails.php',
             'admin/layouts/footer.php',
             'admin/layouts/html_footer.html'
         ], $data);

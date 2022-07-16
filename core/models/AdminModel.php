@@ -74,4 +74,26 @@ class AdminModel
 
         return $db->select($sql);
     }
+
+    /**
+     * @throws Exception
+     */
+    public function listAllClients(): ?array
+    {
+        $db = new Database();
+        return $db->select('SELECT * FROM clientes');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function searchClientById($id): ?array
+    {
+        $db = new Database();
+        $params = [
+            ':id' => $id,
+        ];
+
+        return $db->select('SELECT * FROM clientes WHERE id_cliente = :id', $params);
+    }
 }

@@ -1,16 +1,48 @@
 <div class="container-fluid">
     <div class="row mt-3">
-        <div class="col-md-3">
+        <div class="col-md-1">
             <?php include (__DIR__ . '/layouts/admin-menu.php') ?>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-11">
             <h3>Pedidos <?= ucfirst($data['status']) ?></h3>
+            <hr>
+            <div class="d-inline-flex mb-2">
+                <div>
+                    <a href="?pagina=pedidos" class="btn btn-primary btn-sm">
+                        <i class="fa-solid fa-check-to-slot me-1"></i>
+                        Todos pedidos
+                    </a>
+                </div>
+                <?php
+                    $status = 'Todos';
+                    if (isset($_GET['status'])) {
+                        $status = $_GET['status'];
+                    }
+                ?>
+                <div class="d-inline-flex ms-3">
+                    <label class="me-2" for="statusList">Selecionar status: </label>
+                    <select class="form-select-sm" id="statusList" onchange="changeStatusFilter()">
+                        <option value="" <?= $status == 'todos' ? 'selected' : '' ?>>Todos</option>
+                        <option value="pendente" <?= $status == 'pendente' ? 'selected' : '' ?>>Pendente</option>
+                        <option value="pago" <?= $status == 'pago' ? 'selected' : '' ?>>Pago</option>
+                        <option value="faturado" <?= $status == 'faturado' ? 'selected' : '' ?>>Faturado</option>
+                        <option value="enviado" <?= $status == 'enviado' ? 'selected' : '' ?>>Enviado</option>
+                        <option value="entregue" <?= $status == 'entregue' ? 'selected' : '' ?>>Entregue</option>
+                        <option value="cancelado" <?= $status == 'cancelado' ? 'selected' : '' ?>>Cancelado</option>
+                    </select>
+                </div>
+            </div>
             <?php if (count($data['orders']) == 0): ?>
                 <hr>
-                <p class="text-center">Não existem pedidos <?= $data['status'] ?>!</p>
+                <p class="text-center">
+                    Não existem pedidos
+                    <strong>
+                        <?= $data['status'] ?>
+                    </strong>
+                </p>
             <?php else: ?>
-                <table class="table table-striped" id="ordersTable">
+                <table class="table table-striped table-sm" id="ordersTable">
                     <thead class="table-primary">
                         <tr>
                             <th>Data</th>
@@ -64,4 +96,13 @@
             }
         );
     } );
+
+    function changeStatusFilter(){
+        let filter = document.getElementById('statusList').value;
+        window.location.href = window.location.pathname + '?' + $.param({
+            'pagina' : 'pedidos',
+            'status': filter
+        })
+    }
+
 </script>
