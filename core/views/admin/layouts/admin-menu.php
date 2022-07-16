@@ -1,11 +1,11 @@
 <div>
     <div class="mb-3">
-        <a href="">Inicio</a>
+        <a href="?pagina=inicio">Inicio</a>
     </div>
     <div class="mb-3">
-        <a href="">Clientes</a>
+        <a href="?pagina=clientes">Clientes</a>
     </div>
     <div class="mb-3">
-        <a href="">Pedidos</a>
+        <a href="?pagina=pedidos">Pedidos</a>
     </div>
 </div>

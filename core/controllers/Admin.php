@@ -18,13 +18,22 @@ class Admin
             return;
         }
 
+        $admin = new AdminModel();
+        $pendingOrders = $admin->countPendingOrders();
+        $paidOrders = $admin->countPaidOrders();
+
+        $data = [
+            'totalPendingOrders' => $pendingOrders,
+            'totalPaidOrders'    => $paidOrders
+        ];
+
         Store::layoutAdmin([
             'admin/layouts/html_header.php',
             'admin/layouts/header.php',
             'admin/home.php',
             'admin/layouts/footer.php',
             'admin/layouts/html_footer.html'
-        ]);
+        ], $data);
     }
 
     /**
@@ -86,5 +95,71 @@ class Admin
         $_SESSION['user']   = $isValid->usuario_admin;
 
         Store::redirect('inicio', true);
+    }
+
+    public function logout()
+    {
+        unset ($_SESSION['admin']);
+        unset ($_SESSION['user']);
+        Store::redirect('inicio', true);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function orders()
+    {
+        $status = '';
+        $statusName = '';
+        if (isset($_GET['status'])) {
+            switch ($_GET['status']) {
+                case 'pendente':
+                    $status = ORDER_PENDENTE;
+                    $statusName = $_GET['status'] . 's!';
+                    break;
+                case 'pago':
+                    $status = ORDER_PAGO;
+                    $statusName = $_GET['status'] . 's!';
+                    break;
+                case 'faturado':
+                    $status = ORDER_FATURADO;
+                    $statusName = $_GET['status'] . 's!';
+                    break;
+                case 'enviado':
+                    $status = ORDER_ENVIADO;
+                    $statusName = $_GET['status'] . 's!';
+                    break;
+                case 'entregue':
+                    $status = ORDER_ENTREGUE;
+                    $statusName = $_GET['status'] . 's!';
+                    break;
+                case 'cancelado':
+                    $status = ORDER_CANCELADO;
+                    $statusName = $_GET['status'] . 's!';
+                    break;
+                default:
+                    $status = '';
+                    $statusName = '';
+                    break;
+            }
+        }
+
+        $admin = new AdminModel();
+        $orders = $admin->listOrders($status);
+
+        d($orders);
+
+        $data = [
+            'orders' => $orders,
+            'status' => $statusName
+        ];
+
+        Store::layoutAdmin([
+            'admin/layouts/html_header.php',
+            'admin/layouts/header.php',
+            'admin/orders.php',
+            'admin/layouts/footer.php',
+            'admin/layouts/html_footer.html'
+        ], $data);
     }
 }
