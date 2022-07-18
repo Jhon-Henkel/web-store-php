@@ -145,12 +145,69 @@ class AdminModel
         return $db->select('SELECT * FROM pedidos WHERE id_pedido = :id', $params);
     }
 
-    public function getProductsInOrderByOrderId($id)
+    public function getProductsInOrderByOrderId($id): ?array
     {
         $db = new Database();
         $params = [
             ':id' => $id
         ];
         return $db->select('SELECT * FROM pedidos_produtos WHERE id_pedido = :id', $params);
+    }
+
+    public function getStatusString($status): string
+    {
+        switch ($status) {
+            case ORDER_PENDENTE:
+                return 'Pendente';
+            case ORDER_PAGO:
+                return 'Pago';
+            case ORDER_FATURADO:
+                return 'Faturado';
+            case ORDER_ENVIADO:
+                return 'Enviado';
+            case ORDER_ENTREGUE:
+                return 'Entregue';
+            case ORDER_CANCELADO:
+                return 'Cancelado';
+        }
+        return 'Status não definido';
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function setOrderStatus($status, $orderId)
+    {
+        $statusId = $this->getStatusId($status);
+
+        $db = new Database();
+        $params = [
+            ':status' => $statusId,
+            ':order'  => $orderId
+        ];
+
+        $db->update('UPDATE pedidos SET status_pedido = :status, updated_at = NOW() WHERE id_pedido = :order', $params);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getStatusId($strStatus): int
+    {
+        switch ($strStatus) {
+            case 'Pendente':
+                return ORDER_PENDENTE;
+            case 'Pago':
+                return ORDER_PAGO;
+            case 'Faturado':
+                return ORDER_FATURADO;
+            case 'Enviado':
+                return ORDER_ENVIADO;
+            case 'Entregue':
+                return ORDER_ENTREGUE;
+            case 'Cancelado':
+                return ORDER_CANCELADO;
+        }
+        throw new Exception('Status não definido');
     }
 }

@@ -14,3 +14,4 @@ Bibliotecas implementadas:
 * Composer     - https://getcomposer.org
 * Jquery       - https://code.jquery.com/jquery-3.6.0.min.js
 * Axios        - https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js
+* PHP Mailer

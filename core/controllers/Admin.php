@@ -2,6 +2,7 @@
 
 namespace core\controllers;
 
+use core\classes\Mail;
 use core\classes\Store;
 use core\models\AdminModel;
 use Exception;
@@ -264,10 +265,11 @@ class Admin
      * @throws Exception
      */
     public function orderDetails()
-    {if (!Store::isAdminLogged()) {
-        Store::redirect('inicio', true);
-        return;
-    }
+    {
+        if (!Store::isAdminLogged()) {
+            Store::redirect('inicio', true);
+            return;
+        }
 
         if (!isset($_GET['id'])) {
             Store::redirect('pedidos', true);
@@ -294,5 +296,68 @@ class Admin
             'admin/layouts/footer.php',
             'admin/layouts/html_footer.html'
         ], $data);
+    }
+
+    /**
+     * @throws Exception
+     * TODO fazer histórico de status
+     */
+    public function setStatus()
+    {
+        if (!Store::isAdminLogged()) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
+        if (!isset($_GET['status']) && !isset($_GET['orderId'])) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
+        $status = $_GET['status'];
+        $orderId = $_GET['orderId'];
+
+        if (!in_array($status, ALL_ORDER_STATUS_STR)) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
+        $admin = new AdminModel();
+        $admin->setOrderStatus($status, $orderId);
+        $this->sendEmail($status, $orderId);
+
+        Store::redirect('detalhes-pedido', true);
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function sendEmail($status, $orderId)
+    {
+        $mail = new Mail();
+        $admin = new AdminModel();
+        $order = $admin->getOrdersByOrderId($orderId);
+        $clientMail = $order[0]->email_cliente;
+        $orderCode = $order[0]->codido_pedido;
+
+        switch ($status) {
+            case 'Pendente':
+                $mail->sendEmailOrderPending($clientMail, $orderCode);
+                break;
+            case 'Pago':
+                $mail->sendEmailOrderPaid($clientMail, $orderCode);
+                break;
+            case 'Faturado':
+                $mail->sendEmailOrderBilled($clientMail, $orderCode);
+                break;
+            case 'Enviado':
+                $mail->sendEmailOrderSend($clientMail, $orderCode);
+                break;
+            case 'Entregue':
+                $mail->sendEmailOrderFinish($clientMail, $orderCode);
+                break;
+            case 'Cancelado':
+                $mail->sendEmailOrderCanceled($clientMail, $orderCode);
+        }
     }
 }

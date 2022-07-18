@@ -15,6 +15,7 @@ $rotas = array(
     //pedidos
     'pedidos'           => 'admin@ordersList',
     'detalhes-pedido'   => 'admin@orderDetails',
+    'alterar-status'    => 'admin@setStatus',
 
 );
 

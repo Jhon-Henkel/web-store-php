@@ -42,3 +42,7 @@
 .btn-175{
     min-width: 175px;
 }
+
+.status-click{
+    cursor: pointer;
+}

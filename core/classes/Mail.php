@@ -84,4 +84,88 @@ class Mail
 
         self::sendEmail($clientMail, $subject, $content);
     }
+
+    /**
+     * @throws Exception
+     */
+    public function sendEmailOrderPending($clientMail, $orderId)
+    {
+        $subject = APP_NAME . ' - Pedido '. $orderId . ' pendente';
+        $content = '<p>Informamos que por algum motivo o seu pedido retornou para o status pendente</p>';
+        $content .= '<p>Verifique se o pagamento está concluído, caso sim, entre em contato com nossa equipe</p>';
+        $content .= '<p>Até breve ;)</p>';
+        $content .= '<p>Att. equipe </p>' . APP_NAME;
+
+        self::sendEmail($clientMail, $subject, $content);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sendEmailOrderPaid($clientMail, $orderId)
+    {
+        $subject = APP_NAME . ' - Pedido '. $orderId . ' pago';
+        $content = '<p>Muito obrigado poor efetuar o seu pagamento ;)</p>';
+        $content .= '<p>Logo seu pedido será faturado o estará pronto para despacho</p>';
+        $content .= '<p>Não se preocupe, assim que tivermos novas movimentações iremos te notificar</p>';
+        $content .= '<p>Até breve ;)</p>';
+        $content .= '<p>Att. equipe </p>' . APP_NAME;
+
+        self::sendEmail($clientMail, $subject, $content);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sendEmailOrderBilled($clientMail, $orderId)
+    {
+        $subject = APP_NAME . ' - Pedido '. $orderId . ' faturado';
+        $content = '<p>Seu pedido se encontra faturado e em breve será despachado!</p>';
+        $content .= '<p>Não se preocupe, assim que tivermos novas movimentações iremos te notificar</p>';
+        $content .= '<p>Até breve ;)</p>';
+        $content .= '<p>Att. equipe </p>' . APP_NAME;
+
+        self::sendEmail($clientMail, $subject, $content);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sendEmailOrderSend($clientMail, $orderId)
+    {
+        $subject = APP_NAME . ' - Pedido '. $orderId . ' enviado';
+        $content = '<p>Seu pedido se encontra enviado e em breve estará com você!</p>';
+        $content .= '<p>Não se preocupe, assim que tivermos novas movimentações iremos te notificar</p>';
+        $content .= '<p>Até breve ;)</p>';
+        $content .= '<p>Att. equipe </p>' . APP_NAME;
+
+        self::sendEmail($clientMail, $subject, $content);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sendEmailOrderFinish($clientMail, $orderId)
+    {
+        $subject = APP_NAME . ' - Pedido '. $orderId . ' entregue';
+        $content = '<p>Seu pedido se encontra entregue espero que tenha gostado!</p>';
+        $content .= '<p>Gratos pela preferencia ;)</p>';
+        $content .= '<p>Att. equipe </p>' . APP_NAME;
+
+        self::sendEmail($clientMail, $subject, $content);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sendEmailOrderCanceled($clientMail, $orderId)
+    {
+        $subject = APP_NAME . ' - Pedido '. $orderId . ' cancelado';
+        $content = '<p>Seu pedido se encontra cancelado!</p>';
+        $content .= '<p>Estamos esperando você fazer um novo pedido.</p>';
+        $content .= '<p>Até breve ;)</p>';
+        $content .= '<p>Att. equipe </p>' . APP_NAME;
+
+        self::sendEmail($clientMail, $subject, $content);
+    }
 }
