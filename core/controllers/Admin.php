@@ -2,7 +2,6 @@
 
 namespace core\controllers;
 
-use core\classes\Mail;
 use core\classes\Pdf;
 use core\classes\Store;
 use core\models\AdminModel;
@@ -351,13 +350,13 @@ class Admin
         $products = $admin->getProductsInOrderByOrderId($orderId);
         $client = $admin->getClientById($order[0]->id_cliente);
 
-        d($order);
-        d($products);
-        d($client);
+//        d($order);
+//        d($products);
+//        d($client);
 
         $pdf = new Pdf();
-        $pdf->setHtml('teste');
-        $pdf->setTemplate(getcwd() . '/assets/templates/pdf/template.pdf');
+        $pdf->setHtml('Hello World');
         $pdf->showPdf();
+
     }
 }

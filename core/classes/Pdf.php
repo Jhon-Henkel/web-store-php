@@ -2,12 +2,11 @@
 
 namespace core\classes;
 
-use mPDF;
-use MpdfException;
+use Dompdf\Dompdf;;
 
 class Pdf
 {
-    private mPDF $pdf;
+    private $pdf;
     private string $html;
 
     private int $positionX;
@@ -21,33 +20,20 @@ class Pdf
     private int $fontWeight;
     private string $textAlign;
 
-    public function __construct($format = 'A4', $orientation = 'P', $mode = 'utf-8')
+    public function __construct()
     {
-        $fontsAllow = array(
-            'Courier New',
-            'Arial',
-            'Franklin Gothic Medium',
-            'Lucida Sans',
-            'Times New Roman'
-        );
-
-        $this->pdf = new Mpdf($mode,$format,10, 'Arial',15,15,16,16,9,9,$orientation);
+        $this->setPdf(new Dompdf());
+        $this->getPdf()->setPaper('A4');
 
         $this->resetHtml();
     }
 
-    /**
-     * @return mPDF
-     */
-    public function getPdf(): mPDF
+    public function getPdf()
     {
         return $this->pdf;
     }
 
-    /**
-     * @param mPDF $pdf
-     */
-    public function setPdf(mPDF $pdf): void
+    public function setPdf($pdf)
     {
         $this->pdf = $pdf;
     }
@@ -240,13 +226,13 @@ class Pdf
         $this->textAlign = $textAlign;
     }
 
-    /**
-     * @throws MpdfException
-     */
     public function showPdf()
     {
-        $this->pdf->WriteHTML($this->getHtml());
-        $this->pdf->Output();
+        $pdf = $this->getPdf();
+        $pdf->loadHtml($this->getHtml());
+        $pdf->render();
+        $pdf->stream('1', ["Attachment" => false]);
+
     }
 
     public function resetHtml()
