@@ -3,6 +3,7 @@
 namespace core\models;
 
 use core\classes\Database;
+use core\classes\Mail;
 use Exception;
 
 class AdminModel
@@ -96,7 +97,7 @@ class AdminModel
     /**
      * @throws Exception
      */
-    public function searchClientById($id): ?array
+    public function getClientById($id): ?array
     {
         $db = new Database();
         $params = [
@@ -209,5 +210,55 @@ class AdminModel
                 return ORDER_CANCELADO;
         }
         throw new Exception('Status não definido');
+    }
+
+    public function getIconStatus($status)
+    {
+        switch ($status) {
+            case 'Pendente':
+                return '<i class="fa-solid fa-circle-exclamation"></i>';
+            case 'Pago':
+                return '<i class="fa-solid fa-sack-dollar"></i>';
+            case 'Faturado':
+                return '<i class="fa-solid fa-file-invoice-dollar"></i>';
+            case 'Enviado':
+                return '<i class="fa-solid fa-truck-arrow-right"></i>';
+            case 'Entregue':
+                return '<i class="fa-solid fa-clipboard-check"></i>';
+            case 'Cancelado':
+                return '<i class="fa-solid fa-ban"></i>';
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sendEmail($status, $orderId)
+    {
+        $mail = new Mail();
+        $admin = new AdminModel();
+        $order = $admin->getOrdersByOrderId($orderId);
+        $clientMail = $order[0]->email_cliente;
+        $orderCode = $order[0]->codido_pedido;
+
+        switch ($status) {
+            case 'Pendente':
+                $mail->sendEmailOrderPending($clientMail, $orderCode);
+                break;
+            case 'Pago':
+                $mail->sendEmailOrderPaid($clientMail, $orderCode);
+                break;
+            case 'Faturado':
+                $mail->sendEmailOrderBilled($clientMail, $orderCode);
+                break;
+            case 'Enviado':
+                $mail->sendEmailOrderSend($clientMail, $orderCode);
+                break;
+            case 'Entregue':
+                $mail->sendEmailOrderFinish($clientMail, $orderCode);
+                break;
+            case 'Cancelado':
+                $mail->sendEmailOrderCanceled($clientMail, $orderCode);
+        }
     }
 }

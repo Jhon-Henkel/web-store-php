@@ -1,10 +1,18 @@
 <div class="container-fluid">
     <div class="row mt-3">
-        <div class="col-md-1">
-            <?php include (__DIR__ . '/layouts/admin-menu.php') ?>
+        <div class="col-md-2">
+            <?php
+            use core\util\UtilData;
+            use core\models\AdminModel;
+
+            include (__DIR__ . '/layouts/admin-menu.php');
+
+            $date = new UtilData();
+            $admin = new AdminModel();
+            ?>
         </div>
 
-        <div class="col-md-11">
+        <div class="col-md-10">
             <h3>Histórico de pedidos do <strong><?= $data['cliente']->nome_cliente ?></strong></h3>
             <hr>
             <div class="row">
@@ -33,7 +41,7 @@
                     </div>
                     <div class="col">
                         <strong>Cadastrado em: </strong>
-                        <?= $data['cliente']->data_cadastro ?>
+                        <?= $date->formatDateUsToBr($data['cliente']->data_cadastro) ?>
                     </div>
                 </div>
             </div>
@@ -54,10 +62,10 @@
                     <tbody>
                     <?php foreach ($data['orders'] as $order): ?>
                         <tr>
-                            <td><?= $order->data_pedido ?></td>
+                            <td><?= $date->formatDateUsToBr($order->data_pedido) ?></td>
                             <td><?= $order->codido_pedido ?></td>
-                            <td><?= $order->status_pedido ?></td>
-                            <td><?= $order->updated_at ?></td>
+                            <td><?= $admin->getStatusString($order->status_pedido) ?></td>
+                            <td><?= $order->updated_at ? $date->formatDateUsToBr($order->updated_at) : 'Nunca atualizado' ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

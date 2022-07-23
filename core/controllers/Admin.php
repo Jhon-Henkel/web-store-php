@@ -3,6 +3,7 @@
 namespace core\controllers;
 
 use core\classes\Mail;
+use core\classes\Pdf;
 use core\classes\Store;
 use core\models\AdminModel;
 use Exception;
@@ -213,7 +214,7 @@ class Admin
         $admin = new AdminModel();
 
         $data = [
-            'cliente'       => $admin->searchClientById($clientId)[0],
+            'cliente'       => $admin->getClientById($clientId)[0],
             'totalPedidos'  => $admin->countOrdersByClientId($clientId)
         ];
 
@@ -245,7 +246,7 @@ class Admin
 
         $admin = new AdminModel();
         $orders = $admin->getOrdersByClientId($clientId);
-        $client = $admin->searchClientById($clientId)[0];
+        $client = $admin->getClientById($clientId)[0];
 
         $data = [
             'orders'    => $orders,
@@ -280,7 +281,7 @@ class Admin
 
         $admin = new AdminModel();
         $order = $admin->getOrdersByOrderId($orderId);
-        $client = $admin->searchClientById($order[0]->id_cliente);
+        $client = $admin->getClientById($order[0]->id_cliente);
         $products = $admin->getProductsInOrderByOrderId($orderId);
 
         $data = [
@@ -324,40 +325,39 @@ class Admin
 
         $admin = new AdminModel();
         $admin->setOrderStatus($status, $orderId);
-        $this->sendEmail($status, $orderId);
+        $admin->sendEmail($status, $orderId);
 
-        Store::redirect('detalhes-pedido', true);
+        Store::redirect('detalhes-pedido&id=' . $orderId, true);
     }
 
     /**
      * @throws Exception
      */
-    private function sendEmail($status, $orderId)
+    public function printPdf()
     {
-        $mail = new Mail();
+        if (!Store::isAdminLogged()) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
+        if (!isset($_GET['orderId'])) {
+            Store::redirect('inicio', true);
+            return;
+        }
+
+        $orderId = $_GET['orderId'];
         $admin = new AdminModel();
         $order = $admin->getOrdersByOrderId($orderId);
-        $clientMail = $order[0]->email_cliente;
-        $orderCode = $order[0]->codido_pedido;
+        $products = $admin->getProductsInOrderByOrderId($orderId);
+        $client = $admin->getClientById($order[0]->id_cliente);
 
-        switch ($status) {
-            case 'Pendente':
-                $mail->sendEmailOrderPending($clientMail, $orderCode);
-                break;
-            case 'Pago':
-                $mail->sendEmailOrderPaid($clientMail, $orderCode);
-                break;
-            case 'Faturado':
-                $mail->sendEmailOrderBilled($clientMail, $orderCode);
-                break;
-            case 'Enviado':
-                $mail->sendEmailOrderSend($clientMail, $orderCode);
-                break;
-            case 'Entregue':
-                $mail->sendEmailOrderFinish($clientMail, $orderCode);
-                break;
-            case 'Cancelado':
-                $mail->sendEmailOrderCanceled($clientMail, $orderCode);
-        }
+        d($order);
+        d($products);
+        d($client);
+
+        $pdf = new Pdf();
+        $pdf->setHtml('teste');
+        $pdf->setTemplate(getcwd() . '/assets/templates/pdf/template.pdf');
+        $pdf->showPdf();
     }
 }

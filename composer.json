@@ -26,6 +26,7 @@
         "symfony/google-mailer": "^6.1",
         "symfony/sendgrid-mailer": "^6.1",
         "phpmailer/phpmailer": "^6.6",
-      "ext-openssl": "*"
+      "ext-openssl": "*",
+        "mpdf/mpdf": "^6.1"
     }
 }

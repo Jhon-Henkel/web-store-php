@@ -14,7 +14,7 @@ const MYSQL_CHARSET     = 'utf8';
 //E-mail
 const EMAIL_HOST        = 'smtp-mail.outlook.com';
 const EMAIL_FROM        = 'phpstorejhon@outlook.com';
-const EMAIL_PASSWORD    = 'Jhonphpstore';
+const EMAIL_PASSWORD    = 'H7@#MkGYiHiopcf7';
 const EMAIL_PORT        = 587;
 
 //AES encrypt

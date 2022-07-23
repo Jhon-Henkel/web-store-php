@@ -16,6 +16,7 @@ $rotas = array(
     'pedidos'           => 'admin@ordersList',
     'detalhes-pedido'   => 'admin@orderDetails',
     'alterar-status'    => 'admin@setStatus',
+    'imprimir-pdf'      => 'admin@printPdf'
 
 );
 

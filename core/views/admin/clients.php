@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row mt-3">
-        <div class="col-md-1">
+        <div class="col-md-2">
             <?php include (__DIR__ . '/layouts/admin-menu.php')?>
         </div>
-        <div class="col-md-11">
+        <div class="col-md-10">
             <h3>Clientes</h3>
             <hr>
             <?php if (count($data['clientes']) == 0): ?>
@@ -35,12 +35,12 @@
                                 </td>
                                 <td class="text-center"><?= $cliente->nome_cliente ?></td>
                                 <td class="text-center">
+                                    <?= $cliente->totalPedidos ?>
                                     <?php if ($cliente->totalPedidos != 0): ?>
                                         <a href="?pagina=pedidos-do-cliente&id=<?= $cliente->id_cliente ?>">
                                             <i class="fa-solid fa-eye ms-2 me-2"></i>
                                         </a>
                                     <?php endif; ?>
-                                    <?= $cliente->totalPedidos ?>
                                 </td>
                                 <td class="text-center"><?= $cliente->email_cliente ?></td>
                                 <td class="text-center"><?= empty($cliente->telefone_cliente) ? 'Não cadastrado' : $cliente->telefone_cliente ?></td>

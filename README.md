@@ -15,3 +15,4 @@ Bibliotecas implementadas:
 * Jquery       - https://code.jquery.com/jquery-3.6.0.min.js
 * Axios        - https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js
 * PHP Mailer
+* MPDF         - https://mpdf.github.io/installation-setup/installation-v7-x.html

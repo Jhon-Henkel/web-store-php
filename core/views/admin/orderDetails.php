@@ -1,19 +1,39 @@
 <div class="container-fluid">
     <div class="row mt-3 mb-5">
-        <div class="col-md-1">
-            <?php include (__DIR__ . '/layouts/admin-menu.php') ?>
+        <div class="col-md-2">
+            <?php
+            use core\util\UtilString;
+            use core\util\UtilData;
+            use core\models\AdminModel;
+
+            include (__DIR__ . '/layouts/admin-menu.php');
+
+            $date = new UtilData();
+            $utilString = new UtilString();
+            $admin = new AdminModel();
+            ?>
         </div>
-        <div class="col-md-11">
+        <div class="col-md-10">
             <div class="row">
                 <div class="col">
                     <h3>Detalhes do pedido <strong><?= $data['order']->codido_pedido ?></strong></h3>
                 </div>
                 <?php
-                    $admin = new \core\models\AdminModel();
                     $orderStatus = $admin->getStatusString($data['order']->status_pedido);
                 ?>
                 <div class="col text-end">
-                    <div class="text-center p-3 badge bg-info status-click" onclick="modal()"><?= $orderStatus ?></div>
+                    <div class="text-center p-3 badge bg-warning status-click" onclick="modal()">
+                        Status:
+                        <?= $orderStatus ?>
+                    </div>
+                    <?php if ($orderStatus == ALL_ORDER_STATUS_STR[1]): ?>
+                        <div>
+                            <a class="btn btn-sm btn-primary mt-2 btn-100" href="?pagina=imprimir-pdf&orderId=<?= $data['order']->id_pedido ?>">
+                                <i class="fa-solid fa-print"></i>
+                                imprimir
+                            </a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <hr>
@@ -38,12 +58,8 @@
                 <div class="col-2 fw-bold mt-2">E-mail:</div>
                 <div class="col-10 mt-2"><?= $data['order']->email_cliente ?></div>
 
-                <?php $date = DateTime::createFromFormat('Y-m-d H:i:s', $data['order']->data_pedido); ?>
                 <div class="col-2 fw-bold mt-2">Data Pedido:</div>
-                <div class="col-10 mt-2"><?= $date->format('d/m/Y') ?></div>
-
-                <div class="col-2 fw-bold mt-2">Status:</div>
-                <div class="col-10 mt-2"><?= $orderStatus ?></div>
+                <div class="col-10 mt-2"><?= $date->formatDateUsToBr($data['order']->data_pedido) ?></div>
             </div>
             <hr>
             <h4>Produtos</h4>
@@ -60,9 +76,9 @@
                     <?php foreach ($data['products'] as $product): ?>
                         <tr>
                             <td><?= $product->nome_produto ?></td>
-                            <td class="text-center"><?= $product->valor_unitario ?></td>
+                            <td class="text-center"><?= $utilString->formatPrice($product->valor_unitario) ?></td>
                             <td class="text-center"><?= $product->quantidade ?></td>
-                            <td class="text-center"><?= $product->quantidade * $product->valor_unitario ?></td>
+                            <td class="text-center"><?= $utilString->formatPrice($product->quantidade * $product->valor_unitario) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -78,16 +94,20 @@
                 <h5 class="modal-title">Alterar status do pedido</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-center">
                 <?php foreach (ALL_ORDER_STATUS_STR as $status): ?>
                     <?php if ($orderStatus == $status): ?>
-                        <p><?= $status ?></p>
+                        <p class="btn btn-outline-primary btn-sm btn-150 mb-2">
+                            <?= $admin->getIconStatus($status) ?>
+                            <?= $status ?>
+                        </p>
+                        <br>
                     <?php else: ?>
-                        <p>
-                            <a href="?pagina=alterar-status&status=<?= $status ?>&orderId=<?= $data['order']->id_pedido ?>">
+                            <a class="btn btn-primary btn-sm btn-150 nav-item mb-2" href="?pagina=alterar-status&status=<?= $status ?>&orderId=<?= $data['order']->id_pedido ?>">
+                                <?= $admin->getIconStatus($status) ?>
                                 <?= $status ?>
                             </a>
-                        </p>
+                        <br>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div>

@@ -1,10 +1,18 @@
 <div class="container-fluid">
     <div class="row mt-3">
-        <div class="col-md-1">
-            <?php include (__DIR__ . '/layouts/admin-menu.php') ?>
+        <div class="col-md-2">
+            <?php
+            use core\util\UtilData;
+            use core\models\AdminModel;
+
+            include (__DIR__ . '/layouts/admin-menu.php');
+
+            $date = new UtilData();
+            $admin = new AdminModel();
+            ?>
         </div>
 
-        <div class="col-md-11">
+        <div class="col-md-10">
             <h3>Pedidos <?= ucfirst($data['status']) ?></h3>
             <hr>
             <div class="d-inline-flex mb-2">
@@ -63,13 +71,13 @@
                                         <i class="fa-solid fa-circle-info me-2"></i>
                                     </a>
                                 </td>
-                                <td><?= $order->data_pedido ?></td>
+                                <td><?= $date->formatDateUsToBr($order->data_pedido) ?></td>
                                 <td><?= $order->codido_pedido ?></td>
                                 <td><?= $order->nome_cliente ?></td>
                                 <td><?= $order->email_cliente ?></td>
                                 <td><?= $order->telefone_cliente ?></td>
-                                <td><?= $order->status_pedido ?></td>
-                                <td><?= $order->updated_at ?></td>
+                                <td><?= $admin->getStatusString($order->status_pedido) ?></td>
+                                <td><?= $order->updated_at ? $date->formatDateUsToBr($order->updated_at) : 'Nunca atualizado'  ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
