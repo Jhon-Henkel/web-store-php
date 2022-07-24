@@ -3,7 +3,7 @@
         'name' => 'jhowr/web-store',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '459db80003e42a937182663f263aa7976a9cfa5d',
+        'reference' => 'da652852a8fc651e5f2aca0de6254e78d889922d',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'jhowr/web-store' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '459db80003e42a937182663f263aa7976a9cfa5d',
+            'reference' => 'da652852a8fc651e5f2aca0de6254e78d889922d',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
