@@ -242,7 +242,6 @@ class Main
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
-            'cliente_perfil_nav.php',
             'cliente_perfil.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
@@ -268,7 +267,6 @@ class Main
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
-            'cliente_perfil_nav.php',
             'cliente_alterar_dados_pessoais.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
@@ -330,7 +328,6 @@ class Main
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
-            'cliente_perfil_nav.php',
             'cliente_alterar_senha.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
@@ -399,7 +396,6 @@ class Main
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
-            'cliente_perfil_nav.php',
             'cliente_historico_pedidos.php',
             'layouts/footer.php',
             'layouts/html_footer.html'
@@ -443,7 +439,6 @@ class Main
         Store::layout([
             'layouts/html_header.php',
             'layouts/header.php',
-            'cliente_perfil_nav.php',
             'cliente_detalhe_pedido.php',
             'layouts/footer.php',
             'layouts/html_footer.html'

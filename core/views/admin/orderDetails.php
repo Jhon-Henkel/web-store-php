@@ -19,7 +19,7 @@
                     <h3>Detalhes do pedido <strong><?= $data['order']->codido_pedido ?></strong></h3>
                 </div>
                 <?php
-                    $orderStatus = $admin->getStatusString($data['order']->status_pedido);
+                    $orderStatus = $utilString->getStatusString($data['order']->status_pedido);
                 ?>
                 <div class="col text-end">
                     <div class="text-center p-3 badge bg-warning status-click" onclick="modal()">

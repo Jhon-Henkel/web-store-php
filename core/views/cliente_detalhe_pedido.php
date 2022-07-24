@@ -1,13 +1,20 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
+    <div class="row my-5">
+        <div class="col-md-2">
+            <?php
+                include __DIR__ . '/cliente_perfil_menu.php';
+                $utilString = new \core\util\UtilString();
+                $utilData = new \core\util\UtilData();
+            ?>
+        </div>
+        <div class="col-10">
             <h1 class="text-center">Detalhes do pedido</h1>
 
             <div class="row">
                 <div class="col">
                     <div class="p-2 my-3">
                         <span><strong>Data do pedido: </strong></span>
-                        <?= $data['order']->data_pedido ?>
+                        <?= $utilData->formatDateUsToBr($data['order']->data_pedido) ?>
                     </div>
                     <div class="p-2 my-3">
                         <span><strong>Endereço: </strong></span>
@@ -25,7 +32,7 @@
                     </div>
                     <div class="p-2 my-3">
                         <span><strong>Telefone: </strong></span>
-                        <?= !empty($data['order']->telefone_cliente) ? $data['order']->telefone_cliente : 'Não cadastrado' ?>
+                        <?= !empty($data['order']->telefone_cliente) ? $data['order']->telefone_cliente : 'Não informado' ?>
                     </div>
                     <div class="p-2 my-3">
                         <span><strong>Código do pedido: </strong></span>
@@ -35,30 +42,7 @@
                 <div class="col">
                     <div  class="p-2 my-3">
                         <span><strong>Status: </strong></span>
-                        <?php switch ($data['order']->status_pedido) {
-                            case ORDER_PENDENTE:
-                                echo 'Pendente';
-                                break;
-                            case ORDER_PAGO:
-                                echo 'Pago';
-                                break;
-                            case ORDER_FATURADO:
-                                echo 'Faturado';
-                                break;
-                            case ORDER_ENVIADO:
-                                echo 'Enviado';
-                                break;
-                            case ORDER_ENTREGUE:
-                                echo 'Entregue';
-                                break;
-                            case ORDER_CANCELADO:
-                                echo 'Cancelado';
-                                break;
-                            default:
-                                echo 'Sem Status definido';
-                                break;
-                            }
-                        ?>
+                        <?= $utilString->getStatusString($data['order']->status_pedido) ?>
                     </div>
                 </div>
             </div>
@@ -77,13 +61,13 @@
                                 <tr>
                                     <td><?= $product->nome_produto ?></td>
                                     <td class="text-center"><?= $product->quantidade ?></td>
-                                    <td class="text-end"><?= 'R$ ' . number_format($product->valor_unitario, 2, ',', '.') ?></td>
+                                    <td class="text-end"><?= $utilString->formatPrice($product->valor_unitario) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td class="text-end">Total: <strong><?= 'R$ ' . number_format($data['total'], 2, ',', '.') ?></strong></td>
+                                <td class="text-end">Total: <strong><?= $utilString->formatPrice($data['total']) ?></strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -91,7 +75,10 @@
             </div>
             <div class="row mt-3 mb-5">
                 <div class="col text-center">
-                    <a class="btn btn-primary" href="?pagina=historico_pedidos">Voltar</a>
+                    <a class="btn btn-primary" href="?pagina=historico_pedidos">
+                        <i class="fa-solid fa-circle-chevron-left"></i>
+                        Voltar
+                    </a>
                 </div>
                 <div class="mb-5">
                     &nbsp;

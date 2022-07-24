@@ -1,14 +1,13 @@
 <?php
-use core\classes\Store;
+    use core\classes\Store;
 
-$totalPdt = 0;
-if (isset($_SESSION['cart'])) {
-    foreach ($_SESSION['cart'] as $pdt) {
-        $totalPdt += $pdt;
+    $totalPdt = 0;
+    if (isset($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $pdt) {
+            $totalPdt += $pdt;
+        }
     }
-}
 ?>
-
 <div class="container-fluid navigation">
     <div class="row">
         <div class="col-6 p-3">
@@ -19,8 +18,6 @@ if (isset($_SESSION['cart'])) {
         <div class="col-6 text-end p-3">
             <a href="?pagina=inicio" class="nav-item">Inicio</a>
             <a href="?pagina=loja" class="nav-item">Loja</a>
-
-            <!--verifica se existe cliente na sessão-->
             <?php if (store::isClientLogged()): ?>
                 <a href="?pagina=perfil" class="nav-item">
                     <i class="fa-solid fa-house-chimney-user text-white"></i> <?= $_SESSION['clientName'] ?>
@@ -32,8 +29,9 @@ if (isset($_SESSION['cart'])) {
                 <a href="?pagina=cliente_cadastro" class="nav-item">Criar conta</a>
                 <a href="?pagina=login" class="nav-item">Login</a>
             <?php endif; ?>
-
-            <a href="?pagina=carrinho"><i class="fa-solid fa-cart-shopping"></i></i></a>
+            <a class="nav-item" href="?pagina=carrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
             <span class="badge bg-warning" id="cartPdt"><?= $totalPdt ?></span>
         </div>
     </div>

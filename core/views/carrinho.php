@@ -19,11 +19,15 @@
                             <div class="mt-4 text-center">
                                 <p class="text-center"><h3>Não foram encontrados produtos em seu carrinho...</h3></p>
                                 <hr class="mt-5">
-                                <a href="?pagina=loja" class="btn btn-primary btn-sm">Continuar comprando</a>
+                                <a href="?pagina=loja" class="btn btn-primary btn-sm">
+                                    <i class="fa-solid fa-circle-chevron-left"></i>
+                                    Continuar comprando
+                                </a>
                             </div>
                         <?php else: ?>
                             <div style="margin-bottom: 80px">
-                                <table class="table">
+                                <
+                                table class="table">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -72,20 +76,31 @@
                                 </table>
                                 <div class="row">
                                     <div class="col">
-                                        <button class="btn btn-primary btn-sm" onclick="confirmExcludeCart()">Limpar carrinho</button>
+                                        <button class="btn btn-primary btn-sm" onclick="confirmExcludeCart()">
+                                            <i class="fa-solid fa-trash"></i>
+                                            Limpar carrinho
+                                        </button>
                                         <span class="ms-3" style="display: none" id="confirmExcludeCart">
                                             Tem Certeza?
-                                            <a class="btn btn-outline-success btn-sm" href="?pagina=clean_cart">
+                                            <a class="btn btn-outline-success btn-sm btn-100" href="?pagina=clean_cart">
+                                                <i class="fa-solid fa-circle-check"></i>
                                                 Sim
                                             </a>
-                                            <button onclick="confirmExcludeCartOff()" class="btn btn-outline-danger btn-sm">
+                                            <button onclick="confirmExcludeCartOff()" class="btn btn-outline-danger btn-sm btn-100">
+                                                <i class="fa-solid fa-circle-xmark"></i>
                                                 Não
                                             </button>
                                         </span>
                                     </div>
                                     <div class="col text-end">
-                                        <a href="?pagina=loja" class="btn btn-primary btn-sm">Continuar comprando</a>
-                                        <a href="?pagina=finalizar_pedido" class="btn btn-primary btn-sm">Finalizar pedido ></a>
+                                        <a href="?pagina=loja" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-circle-chevron-left"></i>
+                                            Continuar comprando
+                                        </a>
+                                        <a href="?pagina=finalizar_pedido" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-check-to-slot me-1"></i>
+                                            Resumo do pedido
+                                        </a>
                                     </div>
                                 </div>
                             </div>

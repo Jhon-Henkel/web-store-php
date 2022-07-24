@@ -9,9 +9,9 @@
 
             $date = new UtilData();
             $admin = new AdminModel();
+            $utilString = new \core\util\UtilString()
             ?>
         </div>
-
         <div class="col-md-10">
             <h3>Histórico de pedidos do <strong><?= $data['cliente']->nome_cliente ?></strong></h3>
             <hr>
@@ -64,7 +64,7 @@
                         <tr>
                             <td><?= $date->formatDateUsToBr($order->data_pedido) ?></td>
                             <td><?= $order->codido_pedido ?></td>
-                            <td><?= $admin->getStatusString($order->status_pedido) ?></td>
+                            <td><?= $utilString->getStatusString($order->status_pedido) ?></td>
                             <td><?= $order->updated_at ? $date->formatDateUsToBr($order->updated_at) : 'Nunca atualizado' ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -98,13 +98,4 @@
             }
         );
     } );
-
-    function changeStatusFilter(){
-        let filter = document.getElementById('statusList').value;
-        window.location.href = window.location.pathname + '?' + $.param({
-            'pagina' : 'pedidos',
-            'status': filter
-        })
-    }
-
 </script>

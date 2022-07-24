@@ -6,8 +6,9 @@
             <div class="my-5">
                 <h4>Dados pagamento</h4>
                 <p>Pix: <strong>123456789</strong></p>
+                <?php $utilString = new \core\util\UtilString() ?>
                 <p>Código pedido: <strong><?= $cdOrder ?></strong></p>
-                <p>Total pedido: <strong><?= 'R$' . number_format($totalOrder, 2,',', ',') ?></strong></p>
+                <p>Total pedido: <strong><?= $utilString->formatPrice($totalOrder) ?></strong></p>
             </div>
             <p>
                 Vai receber um e-mail com a confirmação do pedido e os dados de pagamento
@@ -18,10 +19,15 @@
                 <small>
                     Por favor, verifique seu e-mail, caso o e-mail não se encontre na caixa de entrada,
                     <br>
-                    verifique o SPAM e a lixeira.
+                    verifique o <strong>SPAM</strong> e a <strong>lixeira</strong>.
                 </small>
             </p>
-            <div class="my-5"><a href="?pagina=inicio" class="btn btn-primary">Voltar ao inicio</a></div>
+            <div class="my-5">
+                <a href="?pagina=inicio" class="btn btn-primary">
+                    <i class="fa-solid fa-circle-chevron-left"></i>
+                    Voltar ao inicio
+                </a>
+            </div>
         </div>
     </div>
 </div>

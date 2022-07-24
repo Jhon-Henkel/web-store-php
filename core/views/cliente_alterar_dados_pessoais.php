@@ -1,6 +1,11 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row my-5">
-        <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-10 offset-1">
+        <div class="col-md-2">
+            <?php
+                include __DIR__ . '/cliente_perfil_menu.php';
+            ?>
+        </div>
+        <div class="col-md-6 offset-md-2 col-sm-8 offset-sm-2 col-10 offset-1">
             <form action="?pagina=alterar_dados_pessoais_submit" method="post">
                 <div>
                     <label class="form-label" for="email">Email: </label>
@@ -15,12 +20,18 @@
                     <label class="form-label" for="cidade">Cidade: </label>
                     <input class="form-control" id="cidade" type="text" name="cidade" required value="<?= $data['personalData']->cidade_cliente ?>">
 
-                    <label class="form-label" for="telefone">Email: </label>
+                    <label class="form-label" for="telefone">Telefone: </label>
                     <input class="form-control" id="telefone" type="text" name="telefone" value="<?= $data['personalData']->telefone_cliente ?>">
                 </div>
                 <div class="text-center">
-                    <a class="btn btn-danger btn-sm my-4 btn-100" href="?pagina=perfil">Cancelar</a>
-                    <input class="btn btn-primary btn-sm my-4 btn-100" type="submit" value="Salvar">
+                    <a class="btn btn-danger btn-sm my-4 btn-100" href="?pagina=perfil">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Cancelar
+                    </a>
+                    <button class="btn btn-primary btn-sm my-4 btn-100" type="submit">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Salvar
+                    </button>
                 </div>
             </form>
             <?php if (isset($_SESSION['error'])): ?>

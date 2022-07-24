@@ -84,13 +84,4 @@
             }
         );
     } );
-
-    function changeStatusFilter(){
-        let filter = document.getElementById('statusList').value;
-        window.location.href = window.location.pathname + '?' + $.param({
-            'pagina' : 'pedidos',
-            'status': filter
-        })
-    }
-
 </script>

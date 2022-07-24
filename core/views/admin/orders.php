@@ -9,6 +9,7 @@
 
             $date = new UtilData();
             $admin = new AdminModel();
+            $utilString = new \core\util\UtilString();
             ?>
         </div>
 
@@ -76,7 +77,7 @@
                                 <td><?= $order->nome_cliente ?></td>
                                 <td><?= $order->email_cliente ?></td>
                                 <td><?= $order->telefone_cliente ?></td>
-                                <td><?= $admin->getStatusString($order->status_pedido) ?></td>
+                                <td><?= $utilString->getStatusString($order->status_pedido) ?></td>
                                 <td><?= $order->updated_at ? $date->formatDateUsToBr($order->updated_at) : 'Nunca atualizado'  ?></td>
                             </tr>
                         <?php endforeach; ?>
