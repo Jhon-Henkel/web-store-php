@@ -26,8 +26,7 @@
                             </div>
                         <?php else: ?>
                             <div style="margin-bottom: 80px">
-                                <
-                                table class="table">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -40,6 +39,7 @@
                                     <tbody>
                                         <?php
                                             $index = 0;
+                                            $utilString = new \core\util\UtilString();
                                             $totalRows = count($data['cart']);
                                         ?>
                                         <?php foreach ($data['cart'] as $product): ?>
@@ -48,7 +48,13 @@
                                                     <td><img class="img-fluid" width="50px" src="assets/images/products/<?=$product['image']?>"></td>
                                                     <td class="align-middle"><h6><?= $product['title'] ?></h6></td>
                                                     <td class="text-center align-middle"><h6><?= $product['qtd'] ?></h6></td>
-                                                    <td class="text-end align-middle"><h6><b><?= 'R$ ' . number_format($product['price'], 2, ',', '.') ?></b></h6></td>
+                                                    <td class="text-end align-middle">
+                                                        <h6>
+                                                            <b>
+                                                                <?= $utilString->formatPrice($product['price']) ?>
+                                                            </b>
+                                                        </h6>
+                                                    </td>
                                                     <td class="text-center align-middle">
                                                         <a href="?pagina=remover_produto&idPdt=<?= $product['id'] ?>" class="btn btn-danger btn-sm">
                                                             <i class="fa-solid fa-trash"></i>
@@ -63,7 +69,7 @@
                                                     <td class="text-end align-middle">
                                                         <h5>
                                                             <b>
-                                                                <?= 'R$ ' .  number_format($data['cart']['total'], 2, ',', '.') ?>
+                                                                <?= $utilString->formatPrice($data['cart']['total']) ?>
                                                             </b>
                                                         </h5>
                                                     </td>

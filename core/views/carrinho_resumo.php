@@ -36,18 +36,18 @@
                                                 </h6>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td class="text-end"><h4><b>Total:</b></h4></td>
-                                            <td class="text-end align-middle">
-                                                <h4>
-                                                    <b>
-                                                        <?= $utilString->formatPrice($data['total']) ?>
-                                                    </b>
-                                                </h4>
-                                            </td>
-                                        </tr>
                                     <?php endforeach; ?>
+                                    <tr>
+                                        <td></td>
+                                        <td class="text-end"><h4><b>Total:</b></h4></td>
+                                        <td class="text-end align-middle">
+                                            <h4>
+                                                <b>
+                                                    <?= $utilString->formatPrice($data['total']) ?>
+                                                </b>
+                                            </h4>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <h5 class="bg-opacity-10 bg-primary p-2">Dados do Cliente</h5>
