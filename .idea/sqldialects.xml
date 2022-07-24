@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/alters/alters_sql.sql" dialect="MariaDB" />
-    <file url="file://$PROJECT_DIR$/core/controllers/Orders.php" dialect="MariaDB" />
-    <file url="file://$PROJECT_DIR$/core/models/Client.php" dialect="MariaDB" />
-    <file url="PROJECT" dialect="MariaDB" />
-  </component>
-</project>
