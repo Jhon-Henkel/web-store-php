@@ -89,3 +89,9 @@ CREATE TABLE IF NOT EXISTS admin_login (
     PRIMARY KEY (id_admin)
     )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Admin padrão user admin pass 1234--
+INSERT INTO admin_login
+    (usuario_admin, senha_admin, created_at, updated_at, deleted_at)
+VALUES
+    ('admin', '$2y$10$nz/shXc55Pa8awtfKVwfCuCyTs9N55tEBuHj3WjBCaMpWKcB8UtgW', '2022-07-14 23:08:58', NULL, NULL);
