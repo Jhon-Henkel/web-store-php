@@ -355,7 +355,7 @@ class Admin
 //        d($client);
 
         $pdf = new Pdf();
-        $pdf->setHtml('Hello World');
+        $pdf->generatePdfOrderPaid($order[0], $client[0], $products);
         $pdf->showPdf();
 
     }

@@ -2,6 +2,8 @@
 
 namespace core\classes;
 
+use core\util\UtilData;
+use core\util\UtilString;
 use Dompdf\Dompdf;;
 
 class Pdf
@@ -16,14 +18,17 @@ class Pdf
     private string $color;
     private string $backgroundColor;
     private string $fontFamily;
-    private int $fontSize;
-    private int $fontWeight;
+    private string $fontSize;
+    private string $fontWeight;
     private string $textAlign;
 
     public function __construct()
     {
         $this->setPdf(new Dompdf());
         $this->getPdf()->setPaper('A4');
+        $this->setColor('black');
+        $this->setBackgroundColor('white');
+        $this->setTextAlign('left');
 
         $this->resetHtml();
     }
@@ -231,7 +236,7 @@ class Pdf
         $pdf = $this->getPdf();
         $pdf->loadHtml($this->getHtml());
         $pdf->render();
-        $pdf->stream('1', ["Attachment" => false]);
+        $pdf->stream('imprimir.pdf', ["Attachment" => false]);
 
     }
 
@@ -263,16 +268,9 @@ class Pdf
         $this->setDimension($width, $height);
     }
 
-    public function setTemplate($template)
-    {
-        //usar o caminho de onde está o template (função getcwb() do php é util)
-        $this->pdf->SetDocTemplate($template);
-    }
-
     public function pdfContent($content)
     {
         $this->setHtml($this->getHtml() . '<div style="');
-
         $this->setHtml($this->getHtml() . 'position: absolute;');
         $this->setHtml($this->getHtml() . 'left: ' . $this->getPositionX() . 'px;');
         $this->setHtml($this->getHtml() . 'top: ' . $this->getPositionY() . 'px;');
@@ -288,5 +286,84 @@ class Pdf
         $this->setHtml($this->getHtml() . 'text-align: ' . $this->getTextAlign() . ';');
 
         $this->setHtml($this->getHtml() . '">' . $content . '</div>');
+    }
+
+    public function generatePdfOrderPaid($order, $client, $products)
+    {
+        $utilDate = new UtilData();
+        $utilString = new UtilString();
+
+        $this->setFontFamily('Arial');
+        $this->setFontSize('20px');
+        $this->setFontWeight('bold');
+
+        $this->positionAndDimension(450, 10, 400, 30);
+        $this->pdfContent('Data do pedido: ' . $utilDate->formatDateUsToBr($order->data_pedido));
+
+        $this->positionAndDimension(20, 10, 200, 30);
+        $this->pdfContent('Pedido: ' . $order->codido_pedido);
+
+        $this->positionAndDimension(20, 40, 1000, 30);
+        $this->pdfContent('Cliente: ' . $client->nome_cliente);
+
+        $this->positionAndDimension(00, 80, 700, 2);
+        $this->pdfContent('<hr>');
+
+        $this->positionAndDimension(20, 100, 10, 2);
+        $this->pdfContent('Entrega');
+
+        $this->setFontSize('15px');
+        $this->setFontWeight('normal');
+
+        $this->positionAndDimension(20, 140, 1000, 10);
+        $this->pdfContent('Endereço: ' . $order->endereco_entrega . ' - ' . $order->cidade_entrega);
+
+        $this->positionAndDimension(20, 160, 1000, 10);
+        $this->pdfContent('Transportadora: ');
+
+        $this->positionAndDimension(20, 180, 1000, 10);
+        $this->pdfContent('Observações: ');
+
+        $this->setFontSize('20px');
+        $this->setFontWeight('bold');
+
+        $this->positionAndDimension(00, 260, 700, 2);
+        $this->pdfContent('<hr>');
+
+        $this->setTextAlign('center');
+
+        $this->positionAndDimension(20, 290, 700, 2);
+        $this->pdfContent('Produtos');
+
+        $this->setFontSize('15px');
+        $this->setFontWeight('normal');
+
+        $y = 320;
+        $total = 0;
+        foreach ($products as $product) {
+            $this->setTextAlign('left');
+            $this->positionAndDimension(20, $y, 480, 22);
+            $this->pdfContent($product->quantidade . ' X ' . $product->nome_produto);
+
+            $this->setTextAlign('right');
+            $this->positionAndDimension(500, $y, 160, 22);
+            $price = $product->quantidade * $product->valor_unitario;
+            $total += $price;
+            $this->pdfContent($utilString->formatPrice($price));
+
+            $y += 26;
+        }
+
+        $this->setFontSize('20px');
+        $this->setFontWeight('bold');
+
+        $this->positionAndDimension(00, $y, 700, 2);
+        $this->pdfContent('<hr>');
+
+        $y += 26;
+
+        $this->positionAndDimension(180, $y, 480, 22);
+        $this->pdfContent('Total: ' . $utilString->formatPrice($total));
+
     }
 }
