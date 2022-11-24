@@ -16,3 +16,10 @@ Bibliotecas implementadas:
 * Axios        - https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js
 * PHP Mailer
 * DomPdf         - https://github.com/dompdf/dompdf
+
+---
+### Fazer
+- Implementar o php unit
+- Fazer testes unitários e de feature
+-----
+Configurar o arquivo configs.php conforme necessário

@@ -2,13 +2,13 @@
 
 const APP_NAME          = 'PhpWebStore';
 const APP_VERSION       = '1.0.0';
-const BASE_URL          = 'http://localhost/Web-Store/public/';
+const BASE_URL          = 'http://localhost/public/';
 
 //MYSQL
-const MYSQL_SERVER      = 'localhost';
+const MYSQL_SERVER      = '192.168.150.50';
 const MYSQL_DATABASE    = 'php_store';
 const MYSQL_USER        = 'root';
-const MYSQL_PASS        = '';
+const MYSQL_PASS        = '123';
 const MYSQL_CHARSET     = 'utf8';
 
 //E-mail

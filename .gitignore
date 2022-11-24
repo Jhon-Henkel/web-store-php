@@ -1,1 +1,4 @@
 .idea
+.docker
+/node_modules/
+/vendor/
