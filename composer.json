@@ -1,10 +1,9 @@
 {
     "name": "jhowr/web-store",
-    "description": "Loja online em PHP",
+    "description": "Loja virtual em PHP",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Jhowr\\WebStore\\": "src/",
             "core\\": "core/"
         },
         "files": [
@@ -18,7 +17,9 @@
         }
     ],
     "require-dev": {
-        "kint-php/kint": "^4.1"
+        "kint-php/kint": "^4.1",
+        "mockery/mockery": "dev-master",
+        "phpunit/phpunit": "^9"
     },
     "require": {
         "ext-pdo": "*",

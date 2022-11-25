@@ -14,8 +14,10 @@ Bibliotecas implementadas:
 * Composer     - https://getcomposer.org
 * Jquery       - https://code.jquery.com/jquery-3.6.0.min.js
 * Axios        - https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js
-* PHP Mailer
-* DomPdf         - https://github.com/dompdf/dompdf
+* PHP Mailer   - https://github.com/PHPMailer/PHPMailer
+* DomPdf       - https://github.com/dompdf/dompdf
+* Mockery      - http://docs.mockery.io/
+* Php Unity    - https://phpunit.de/
 
 ---
 ### Fazer
