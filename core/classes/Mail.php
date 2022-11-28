@@ -13,7 +13,6 @@ class Mail
      */
     public function sendEmail($clientEmail, $subject, $content)
     {
-        die('caiu dentro do sendEmail');
         //não funciona para origem gmail
         $mail = new PHPMailer(true);
 
