@@ -18,9 +18,7 @@ CREATE TABLE IF NOT EXISTS clientes (
     data_modificacao DATETIME NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     data_delete DATETIME NULL DEFAULT NULL,
     PRIMARY KEY (id_cliente) USING BTREE
-)
-COLLATE='utf8mb4_general_ci'
-ENGINE=InnoDB;
+) COLLATE='utf8mb4_general_ci' ENGINE=InnoDB;
 
 -- Criando tabela produtos --
 CREATE TABLE IF NOT EXISTS produtos (

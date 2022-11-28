@@ -13,6 +13,7 @@ class Mail
      */
     public function sendEmail($clientEmail, $subject, $content)
     {
+        die('caiu dentro do sendEmail');
         //não funciona para origem gmail
         $mail = new PHPMailer(true);
 
@@ -83,6 +84,8 @@ class Mail
         $content .= '<hr>';
 
         self::sendEmail($clientMail, $subject, $content);
+
+        return true;
     }
 
     /**
@@ -97,6 +100,8 @@ class Mail
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
         self::sendEmail($clientMail, $subject, $content);
+
+        return true;
     }
 
     /**
@@ -112,6 +117,8 @@ class Mail
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
         self::sendEmail($clientMail, $subject, $content);
+
+        return true;
     }
 
     /**
@@ -126,6 +133,8 @@ class Mail
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
         self::sendEmail($clientMail, $subject, $content);
+
+        return true;
     }
 
     /**
@@ -140,6 +149,8 @@ class Mail
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
         self::sendEmail($clientMail, $subject, $content);
+
+        return true;
     }
 
     /**
@@ -153,6 +164,8 @@ class Mail
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
         self::sendEmail($clientMail, $subject, $content);
+
+        return true;
     }
 
     /**
@@ -167,5 +180,7 @@ class Mail
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
         self::sendEmail($clientMail, $subject, $content);
+
+        return true;
     }
 }

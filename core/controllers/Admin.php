@@ -350,10 +350,6 @@ class Admin
         $products = $admin->getProductsInOrderByOrderId($orderId);
         $client = $admin->getClientById($order[0]->id_cliente);
 
-//        d($order);
-//        d($products);
-//        d($client);
-
         $pdf = new Pdf();
         $pdf->generatePdfOrderPaid($order[0], $client[0], $products);
         $pdf->showPdf();

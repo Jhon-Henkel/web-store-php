@@ -145,33 +145,4 @@ class Database
 
         $this->disconnectDb();
     }
-
-    /**
-     * @throws \Exception
-     * query genérica
-     */
-    public function statement($sql, $params = null)
-    {
-        $sql = trim($sql);
-
-        if (preg_match('/^(INSERT|UPDATE|DELETE|SELECT)/i', $sql)){
-            throw new \Exception('Base de dados não é válida para esse método');
-        }
-
-        $this->connectDb();
-
-        try {
-            $pdo = $this->connectDb->prepare($sql);
-
-            if (!empty($params)) {
-                $pdo->execute($params);
-            } else {
-                $pdo->execute();
-            }
-        } catch (\PDOException $exception) {
-            return false;
-        }
-
-        $this->disconnectDb();
-    }
 }
