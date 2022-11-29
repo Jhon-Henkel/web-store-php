@@ -56,7 +56,7 @@ class Mail
         $content.= '<p><a href="' . $link . '">Confirmar e-mail</a></p>';
         $content.= '<p><i><small>' . APP_NAME . '</small></i></p>';
 
-        self::sendEmail($clientEmail, $subject, $content);
+        $this->sendEmail($clientEmail, $subject, $content);
 
         return true;
     }
@@ -82,7 +82,7 @@ class Mail
         $content .= '<p>O seu pedido só será processado após a confirmação de pagamento.</p>';
         $content .= '<hr>';
 
-        self::sendEmail($clientMail, $subject, $content);
+        $this->sendEmail($clientMail, $subject, $content);
 
         return true;
     }
@@ -98,7 +98,7 @@ class Mail
         $content .= '<p>Até breve ;)</p>';
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
-        self::sendEmail($clientMail, $subject, $content);
+        $this->sendEmail($clientMail, $subject, $content);
 
         return true;
     }
@@ -115,7 +115,7 @@ class Mail
         $content .= '<p>Até breve ;)</p>';
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
-        self::sendEmail($clientMail, $subject, $content);
+        $this->sendEmail($clientMail, $subject, $content);
 
         return true;
     }
@@ -131,7 +131,7 @@ class Mail
         $content .= '<p>Até breve ;)</p>';
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
-        self::sendEmail($clientMail, $subject, $content);
+        $this->sendEmail($clientMail, $subject, $content);
 
         return true;
     }
@@ -147,7 +147,7 @@ class Mail
         $content .= '<p>Até breve ;)</p>';
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
-        self::sendEmail($clientMail, $subject, $content);
+        $this->sendEmail($clientMail, $subject, $content);
 
         return true;
     }
@@ -162,7 +162,7 @@ class Mail
         $content .= '<p>Gratos pela preferencia ;)</p>';
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
-        self::sendEmail($clientMail, $subject, $content);
+        $this->sendEmail($clientMail, $subject, $content);
 
         return true;
     }
@@ -178,7 +178,7 @@ class Mail
         $content .= '<p>Até breve ;)</p>';
         $content .= '<p>Att. equipe </p>' . APP_NAME;
 
-        self::sendEmail($clientMail, $subject, $content);
+        $this->sendEmail($clientMail, $subject, $content);
 
         return true;
     }
