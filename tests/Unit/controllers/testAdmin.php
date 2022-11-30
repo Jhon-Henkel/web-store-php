@@ -192,10 +192,6 @@ class testAdmin extends TestCase
         $this->assertNull($test);
     }
 
-
-
-
-
     public function getDefaultStoreMock()
     {
         $mockStore = \Mockery::mock('alias:core\classes\Store')->makePartial();
