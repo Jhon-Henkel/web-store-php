@@ -5,7 +5,7 @@ namespace Unit\controllers;
 use core\controllers\Cart;
 use PHPUnit\Framework\TestCase;
 
-class testCart extends TestCase
+class CartUnitTest extends TestCase
 {
     protected function tearDown(): void
     {

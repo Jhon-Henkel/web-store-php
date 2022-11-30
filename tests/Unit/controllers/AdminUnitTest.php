@@ -5,7 +5,7 @@ namespace Unit\controllers;
 use core\controllers\Admin;
 use PHPUnit\Framework\TestCase;
 
-class testAdmin extends TestCase
+class AdminUnitTest extends TestCase
 {
     protected function tearDown(): void
     {

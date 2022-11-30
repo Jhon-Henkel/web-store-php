@@ -5,7 +5,7 @@ namespace Unit\classes;
 use core\classes\Store;
 use PHPUnit\Framework\TestCase;
 
-class TestStore extends TestCase
+class StoreUnitTest extends TestCase
 {
     public string $stringToEncrypt = '12345678';
 

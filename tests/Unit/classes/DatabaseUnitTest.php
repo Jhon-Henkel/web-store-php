@@ -5,7 +5,7 @@ namespace Unit\classes;
 use core\classes\Database;
 use PHPUnit\Framework\TestCase;
 
-class TestDatabase extends TestCase
+class DatabaseUnitTest extends TestCase
 {
     public function testSelectMethodWithWrongSqlType()
     {

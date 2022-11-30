@@ -5,7 +5,7 @@ namespace Unit\classes;
 use core\classes\Mail;
 use PHPUnit\Framework\TestCase;
 
-class TestMail extends TestCase
+class MailUnitTest extends TestCase
 {
     public string $clientMail = 'test@mail.com';
     public string $orderId = '12345';
