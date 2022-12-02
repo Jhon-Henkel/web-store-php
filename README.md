@@ -25,3 +25,4 @@ Bibliotecas implementadas:
 - Fazer testes unitários e de feature
 -----
 Configurar o arquivo configs.php conforme necessário
+rodaar o comando sudo chown -R 1000:1000 .phpunit.result.cache na raiz do projeto
