@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit bootstrap="vendor/autoload.php"
-         colors="true"
-         verbose="true"
-         stopOnFailure="true">
-    <testsuites>
-        <testsuite name="tests">
-            <directory>tests</directory>
-        </testsuite>
-    </testsuites>
+<phpunit colors="true" stopOnFailure="true">
+    <logging>
+        <log type="coverage-html" target="report" lowUpperBound="35" highLowerBound="70"/>
+    </logging>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">core</directory>
+        </whitelist>
+    </filter>
 </phpunit>
